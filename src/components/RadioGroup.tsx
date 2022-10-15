@@ -29,7 +29,7 @@ function RadioGroupButtons({ options }: RadioGroupButtonsProps) {
                       ? 'bg-sky-900 bg-opacity-75 text-white'
                       : 'bg-gray-100'
                   }
-                    relative flex cursor-pointer rounded-lg px-2 py-1 shadow-md focus:outline-none`
+                    relative flex cursor-pointer rounded-md px-2 py-1 shadow-md focus:outline-none`
                 }
               >
                 {({ active, checked }) => (
