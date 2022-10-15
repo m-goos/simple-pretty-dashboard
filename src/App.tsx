@@ -4,6 +4,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import './App.css';
 import Filter from './components/Filter';
 import Navbar from './components/Navbar';
+import Revenue from './components/Revenue';
 
 const queryClient = new QueryClient();
 
@@ -13,6 +14,7 @@ function App() {
       <div className="h-screen bg-gray-100 sm:bg-orange-600">
         <Navbar />
         <Filter />
+        <Revenue />
       </div>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
