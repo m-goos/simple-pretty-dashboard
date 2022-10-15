@@ -1,8 +1,11 @@
 import { AdjustmentsHorizontalIcon } from '@heroicons/react/24/outline';
 import RadioGroupButtons from './RadioGroup';
 
-const financialFilters = ['revenue', 'margin'];
-const timeFilters = ['monthly', 'weekly'];
+export type TFinancialFilter = 'revenue' | 'margin';
+export type TTimeFilter = 'monthly' | 'weekly';
+
+const financialFilters: TFinancialFilter[] = ['revenue', 'margin'];
+const timeFilters: TTimeFilter[] = ['monthly', 'weekly'];
 
 function Filter() {
   return (

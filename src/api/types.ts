@@ -33,5 +33,5 @@ export type TEndpoint =
   | '/invoices'
   | '/revenues/monthly'
   | '/revenues/weekly'
-  | 'customers/revenues'
-  | 'categories/revenues';
+  | '/customers/revenues'
+  | '/categories/revenues';
