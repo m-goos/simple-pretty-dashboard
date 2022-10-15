@@ -35,7 +35,8 @@
     "prepare": "husky install",
     "prettier": "prettier --write src/",
     "prettier:ci": "prettier --check src/",
-    "lint": "eslint src/ --max-warnings=0 --cache"
+    "lint": "eslint src/ --max-warnings=0 --cache",
+    "check-types": "tsc --noEmit"
   },
   "eslintConfig": {
     "extends": [
