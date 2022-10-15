@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-yarn test:ci \n yarn prettier:ci
+yarn test:ci
+yarn prettier:ci
