@@ -16,7 +16,7 @@ function Revenue() {
   return (
     <>
       {data?.map((month) => (
-        <div>
+        <div key={month.month}>
           Total monthly revenue in {month.month}: {month.total_revenue}
         </div>
       ))}
