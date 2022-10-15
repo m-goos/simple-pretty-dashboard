@@ -1,10 +1,10 @@
-export interface ICategoryRevenue {
+interface ICategoryRevenue {
   category_name: string;
   total_revenue: number;
   total_margin: number;
 }
 
-export type ICategoriesRevenue = ICategoryRevenue[];
+export type TCategoriesRevenue = ICategoryRevenue[];
 
 interface IProduct {
   id: number;
@@ -14,7 +14,18 @@ interface IProduct {
   margin: number;
 }
 
-export type IProducts = IProduct[];
+export type TProducts = IProduct[];
+
+interface IRevenueMonth {
+  month: string;
+  start_date: string;
+  end_date: string;
+  invoices_count: number;
+  total_margin: number;
+  total_revenue: number;
+}
+
+export type TRevenuesMonthly = IRevenueMonth[];
 
 export type TEndpoint =
   | '/products'
