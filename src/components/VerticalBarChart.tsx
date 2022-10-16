@@ -9,6 +9,7 @@ import {
   Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
+import { TFinancialFilter } from '../context/filterContext';
 
 ChartJS.register(
   CategoryScale,
@@ -27,13 +28,12 @@ interface IBarChartData {
   }[];
 }
 
-type TChartTitle = 'revenue' | 'margin';
 export interface IBarDataset {
   labels: string[];
   data: number[];
 }
 
-const setOptions = (label: TChartTitle) => {
+const setOptions = (label: TFinancialFilter) => {
   const options = {
     responsive: true,
     plugins: {
@@ -70,7 +70,7 @@ const setBarData = (dataset: IBarDataset): IBarChartData => {
 };
 
 interface VerticalBarChartProps {
-  chartTitle: TChartTitle;
+  chartTitle: TFinancialFilter;
   dataset: IBarDataset;
 }
 
