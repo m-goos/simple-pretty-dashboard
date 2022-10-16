@@ -5,9 +5,6 @@ import Table from './Table';
 (or total margin, depending on switcher value).
  */
 function InvoiceTable() {
-  const columns = 'colums';
-  const data = 'data';
-  // return <Table columns={columns} data={data} />;
   return <Table />;
 }
 

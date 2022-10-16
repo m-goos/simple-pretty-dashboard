@@ -1,25 +1,18 @@
-import { useQuery } from '@tanstack/react-query';
-import client from '../api/client';
-import { TCategoriesRevenue } from '../api/APITypes';
 import { useFilter } from '../context/filterContext';
 import ErrorPage from './ErrorPage';
 
 import Loading from './Loading';
-import NoResult from './NoData';
 import VerticalBarChart from './charts/VerticalBarChart';
 import { IChartDataSet } from './charts/chartTypes';
+import useCategoriesRevenues from '../api/hooks/useCategoriesRevenues';
 
 function Revenue() {
   const { state } = useFilter();
 
-  const { isLoading, error, data } = useQuery<TCategoriesRevenue>(
-    ['/categories/revenues'],
-    () => client('/categories/revenues')
-  );
+  const { status, error, data } = useCategoriesRevenues();
 
-  if (isLoading) return <Loading />;
-  if (error) return <ErrorPage error={error as Error} />;
-  if (!data) return <NoResult />;
+  if (status === 'loading') return <Loading />;
+  if (status === 'error') return <ErrorPage error={error as Error} />;
 
   const chartTitle = `Total ${state.financialFilter} in € by product`;
 
