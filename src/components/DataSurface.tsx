@@ -1,10 +1,10 @@
 import { ReactNode } from 'react';
 
-interface ChartSurfaceProps {
+interface DataSurfaceProps {
   children: ReactNode;
 }
 
-function ChartSurface({ children }: ChartSurfaceProps) {
+function DataSurface({ children }: DataSurfaceProps) {
   return (
     <div
       className="rounded-md
@@ -15,4 +15,4 @@ function ChartSurface({ children }: ChartSurfaceProps) {
   );
 }
 
-export default ChartSurface;
+export default DataSurface;
