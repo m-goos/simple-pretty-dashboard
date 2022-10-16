@@ -1,11 +1,9 @@
 import { useState } from 'react';
 import { RadioGroup } from '@headlessui/react';
-import { TFinancialFilter } from './Filter';
 
 interface RadioGroupButtonsProps {
   options: string[];
-  // value: string;
-  onChange: React.Dispatch<React.SetStateAction<TFinancialFilter>>;
+  onChange: () => void;
 }
 
 function RadioGroupButtons({ options, onChange }: RadioGroupButtonsProps) {
@@ -13,7 +11,7 @@ function RadioGroupButtons({ options, onChange }: RadioGroupButtonsProps) {
 
   const handleChange = (value: string) => {
     setSelected(value);
-    onChange(value as TFinancialFilter);
+    onChange();
   };
 
   return (
