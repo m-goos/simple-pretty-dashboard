@@ -10,7 +10,6 @@ import {
   Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import { TFinancialFilter, TTimeFilter } from '../context/filterContext';
 
 ChartJS.register(
   CategoryScale,
@@ -22,15 +21,20 @@ ChartJS.register(
   Legend
 );
 
-interface LineChartProps {
-  timeFilter: TTimeFilter;
-  financialFilter: TFinancialFilter;
+export interface IChartData {
+  labels: string[]; // months or weeks
+  dataset: {
+    label: string;
+    data: number[];
+  };
 }
 
-const setOptions = (
-  timeFilter: TTimeFilter,
-  financialFilter: TFinancialFilter
-) => {
+interface LineChartProps {
+  title: string;
+  data: IChartData;
+}
+
+const setOptions = (title: string) => {
   const options = {
     responsive: true,
     plugins: {
@@ -39,7 +43,7 @@ const setOptions = (
       },
       title: {
         display: true,
-        text: `Cumulative ${timeFilter} invoice ${financialFilter} in €`,
+        text: title,
       },
     },
   };
@@ -47,23 +51,20 @@ const setOptions = (
   return options;
 };
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-
-export const data = {
-  labels,
+const setData = (data: IChartData) => ({
+  labels: data.labels,
   datasets: [
     {
-      label: 'Dataset 1',
-      data: [1, 2.5, 3.5, 4, 5.2, 6, 9],
+      label: data.dataset.label,
+      data: data.dataset.data,
       borderColor: 'rgb(255, 99, 132)',
       backgroundColor: 'rgba(255, 99, 132, 0.5)',
     },
   ],
-};
+});
 
-function LineChart({ timeFilter, financialFilter }: LineChartProps) {
-  return <Line options={setOptions(timeFilter, financialFilter)} data={data} />;
+function LineChart({ title, data }: LineChartProps) {
+  return <Line options={setOptions(title)} data={setData(data)} />;
 }
 
 export default LineChart;
-// git commit -m "feat: set up LineChart"

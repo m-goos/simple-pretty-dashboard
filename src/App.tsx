@@ -29,3 +29,5 @@ function App() {
 }
 
 export default App;
+
+// @TODO prefetch the non-default endpoints for better UX

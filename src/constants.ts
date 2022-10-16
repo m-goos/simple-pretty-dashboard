@@ -10,3 +10,5 @@ export type TEndpoint =
   | '/categories/revenues';
 
 export const BASE_URL = process.env.REACT_APP_BASE_URL as string;
+
+export const WEEK_NUMBERS = [];
