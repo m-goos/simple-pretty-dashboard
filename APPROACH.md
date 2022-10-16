@@ -6,7 +6,7 @@ rm yarn.lock # remove lock file to prevent conflicts with package version
 yarn # installs files
 
 # in terminal tab 1
-yarn start server
+yarn server
 
 # in terminal tab 2
 yarn start
