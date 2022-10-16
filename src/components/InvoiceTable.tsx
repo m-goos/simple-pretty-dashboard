@@ -4,6 +4,7 @@ import ErrorPage from './ErrorPage';
 import Loading from './Loading';
 import Table from './Table';
 import useInvoices from '../api/hooks/useInvoices';
+import { useFilter } from '../context/filterContext';
 
 const columnHelper = createColumnHelper<TInvoice>();
 
@@ -66,7 +67,7 @@ const exampleInvoiceData: TInvoice[] = [
 (or total margin, depending on switcher value).
  */
 function InvoiceTable() {
-  // const { state } = useFilter();
+  const { state } = useFilter();
 
   const { status, error, data } = useInvoices();
 
@@ -74,8 +75,11 @@ function InvoiceTable() {
   if (status === 'error') return <ErrorPage error={error as Error} />;
 
   console.log(data);
+  const invoiceTitle = `Latest Invoices (${state.financialFilter})`;
 
-  return <Table data={exampleInvoiceData} columns={columns} />;
+  return (
+    <Table data={exampleInvoiceData} columns={columns} title={invoiceTitle} />
+  );
 }
 
 export default InvoiceTable;
