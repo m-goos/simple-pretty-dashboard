@@ -1,17 +1,25 @@
 import { useState } from 'react';
 import { RadioGroup } from '@headlessui/react';
+import { TFinancialFilter } from './Filter';
 
 interface RadioGroupButtonsProps {
   options: string[];
+  // value: string;
+  onChange: React.Dispatch<React.SetStateAction<TFinancialFilter>>;
 }
 
-function RadioGroupButtons({ options }: RadioGroupButtonsProps) {
+function RadioGroupButtons({ options, onChange }: RadioGroupButtonsProps) {
   const [selected, setSelected] = useState(options[0]);
+
+  const handleChange = (value: string) => {
+    setSelected(value);
+    onChange(value as TFinancialFilter);
+  };
 
   return (
     <div className="w-fit rounded-lg border border-solid border-sky-900 border-opacity-25 p-1">
       <div className="mx-auto w-full max-w-md">
-        <RadioGroup value={selected} onChange={setSelected}>
+        <RadioGroup value={selected} onChange={handleChange}>
           <RadioGroup.Label className="sr-only">Server size</RadioGroup.Label>
           <div className="flex flex-row space-x-2">
             {options.map((option) => (
@@ -39,7 +47,7 @@ function RadioGroupButtons({ options }: RadioGroupButtonsProps) {
                         <div className="text-sm">
                           <RadioGroup.Label
                             as="p"
-                            className={`font-medium  ${
+                            className={`font-medium ${
                               checked ? 'text-white' : 'text-gray-900'
                             }`}
                           >

@@ -5,16 +5,22 @@ export type TFinancialFilter = 'revenue' | 'margin';
 export type TTimeFilter = 'monthly' | 'weekly';
 
 const financialFilters: TFinancialFilter[] = ['revenue', 'margin'];
-const timeFilters: TTimeFilter[] = ['monthly', 'weekly'];
+// const timeFilters: TTimeFilter[] = ['monthly', 'weekly'];
 
-function Filter() {
+interface FilterProps {
+  setFinancialFilter: React.Dispatch<React.SetStateAction<TFinancialFilter>>;
+}
+function Filter({ setFinancialFilter }: FilterProps) {
   return (
     <div className="flex items-center py-2 px-4 shadow-md">
       <div className="flex w-full items-center justify-between">
         <AdjustmentsHorizontalIcon className="block h-6 w-6" />
         <span className="hidden text-2xl font-medium sm:block">Filters</span>
-        <RadioGroupButtons options={financialFilters} />
-        <RadioGroupButtons options={timeFilters} />
+        <RadioGroupButtons
+          options={financialFilters}
+          onChange={setFinancialFilter}
+        />
+        {/* <RadioGroupButtons options={timeFilters} /> */}
       </div>
     </div>
   );

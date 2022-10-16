@@ -42,7 +42,7 @@ const setOptions = (label: TChartTitle) => {
       },
       title: {
         display: true,
-        text: `Total ${label}`,
+        text: `Total ${label} in € by product`,
       },
     },
   };

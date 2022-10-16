@@ -1,5 +1,5 @@
-function NoData() {
-  return <div>Sorry, no data found for that search..</div>;
+function NoResult() {
+  return <div>Sorry, nothing found for that search..</div>;
 }
 
-export default NoData;
+export default NoResult;

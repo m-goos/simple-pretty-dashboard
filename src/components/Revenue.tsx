@@ -5,21 +5,20 @@ import { TCategoriesRevenue } from '../api/types';
 import ErrorPage from './ErrorPage';
 import { TFinancialFilter } from './Filter';
 import Loading from './Loading';
-import NoData from './NoData';
+import NoResult from './NoData';
 import VerticalBarChart, { IBarDataset } from './VerticalBarChart';
 
-function Revenue() {
+interface RevenueProps {
+  financialFilter: TFinancialFilter;
+}
+
+function Revenue({ financialFilter }: RevenueProps) {
   const { isLoading, error, data } = useQuery<TCategoriesRevenue>(
     ['/categories/revenues'],
     () => client('/categories/revenues')
   );
 
   const [barData, setBarData] = useState<IBarDataset | null>(null);
-  const [mockFinancialFilter, setMockFinancialFilter] =
-    useState<TFinancialFilter>('margin');
-
-  // @TODO: get from context
-  // const financialFilter: TFinancialFilter = 'margin';
 
   useEffect(() => {
     if (data) {
@@ -27,28 +26,17 @@ function Revenue() {
       const totalRevenue = data.map((product) => product.total_revenue);
       const totalMargin = data.map((product) => product.total_margin);
       const activeData =
-        mockFinancialFilter === 'margin' ? totalMargin : totalRevenue;
+        financialFilter === 'margin' ? totalMargin : totalRevenue;
 
       setBarData({ labels: productNames, data: activeData });
     }
-  }, [mockFinancialFilter, data]);
+  }, [financialFilter, data]);
 
   if (isLoading) return <Loading />;
   if (error) return <ErrorPage error={error as Error} />;
-  if (!data || !barData) return <NoData />;
+  if (!data || !barData) return <NoResult />;
 
-  return (
-    <>
-      <button onClick={() => setMockFinancialFilter('revenue')}>
-        toggle revenue
-      </button>{' '}
-      |{' '}
-      <button onClick={() => setMockFinancialFilter('margin')}>
-        toggle margin
-      </button>
-      <VerticalBarChart chartTitle={mockFinancialFilter} dataset={barData} />
-    </>
-  );
+  return <VerticalBarChart chartTitle={financialFilter} dataset={barData} />;
 }
 
 export default Revenue;
