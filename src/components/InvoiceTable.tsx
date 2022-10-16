@@ -5,71 +5,59 @@ import Loading from './Loading';
 import Table from './Table';
 import useInvoices from '../api/hooks/useInvoices';
 
-const columnHelper = createColumnHelper<Person>();
+const columnHelper = createColumnHelper<TInvoice>();
 
-type Person = {
-  firstName: string;
-  lastName: string;
-  age: number;
-  visits: number;
-  status: string;
-  progress: number;
+type TInvoice = {
+  customer_name: string;
+  id: number;
+  date: string;
+  region: string;
+  total_invoice: number;
+  total_margin: number;
 };
 
 const columns = [
-  columnHelper.accessor('firstName', {
+  columnHelper.accessor((row) => row.customer_name, {
+    id: 'customer_name',
     cell: (info) => info.getValue(),
-    footer: (info) => info.column.id,
+    header: () => <span>Customer Name</span>,
+    // footer: (info) => info.column.id,
   }),
-  columnHelper.accessor((row) => row.lastName, {
-    id: 'lastName',
-    cell: (info) => <i>{info.getValue()}</i>,
-    header: () => <span>Last Name</span>,
-    footer: (info) => info.column.id,
-  }),
-  columnHelper.accessor('age', {
-    header: () => 'Age',
-    cell: (info) => info.renderValue(),
-    footer: (info) => info.column.id,
-  }),
-  columnHelper.accessor('visits', {
-    header: () => <span>Visits</span>,
-    footer: (info) => info.column.id,
-  }),
-  columnHelper.accessor('status', {
-    header: 'Status',
-    footer: (info) => info.column.id,
-  }),
-  columnHelper.accessor('progress', {
-    header: 'Profile Progress',
-    footer: (info) => info.column.id,
-  }),
+  // columnHelper.accessor('age', {
+  //   header: () => 'Age',
+  //   cell: (info) => info.renderValue(),
+  //   footer: (info) => info.column.id,
+  // }),
+  // columnHelper.accessor('visits', {
+  //   header: () => <span>Visits</span>,
+  //   footer: (info) => info.column.id,
+  // }),
+  // columnHelper.accessor('status', {
+  //   header: 'Status',
+  //   footer: (info) => info.column.id,
+  // }),
+  // columnHelper.accessor('progress', {
+  //   header: 'Profile Progress',
+  //   footer: (info) => info.column.id,
+  // }),
 ];
 
-const defaultData: Person[] = [
+const exampleInvoiceData: TInvoice[] = [
   {
-    firstName: 'tanner',
-    lastName: 'linsley',
-    age: 24,
-    visits: 100,
-    status: 'In Relationship',
-    progress: 50,
+    customer_name: 'Saidi Castex',
+    id: 1,
+    date: '2020-07-18',
+    region: 'Australia',
+    total_invoice: 4208.75,
+    total_margin: 655,
   },
   {
-    firstName: 'tandy',
-    lastName: 'miller',
-    age: 40,
-    visits: 40,
-    status: 'Single',
-    progress: 80,
-  },
-  {
-    firstName: 'joe',
-    lastName: 'dirte',
-    age: 45,
-    visits: 20,
-    status: 'Complicated',
-    progress: 10,
+    customer_name: 'Martin Muijs',
+    id: 2,
+    date: '2020-04-10',
+    total_invoice: 318.98,
+    total_margin: 18.14,
+    region: 'USA',
   },
 ];
 
@@ -87,7 +75,7 @@ function InvoiceTable() {
 
   console.log(data);
 
-  return <Table data={defaultData} columns={columns} />;
+  return <Table data={exampleInvoiceData} columns={columns} />;
 }
 
 export default InvoiceTable;
