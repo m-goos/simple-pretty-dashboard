@@ -10,6 +10,7 @@ import {
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import { TFinancialFilter } from '../context/filterContext';
+import ChartSurface from './ChartSurface';
 
 ChartJS.register(
   CategoryScale,
@@ -75,7 +76,11 @@ interface VerticalBarChartProps {
 }
 
 function VerticalBarChart({ chartTitle, dataset }: VerticalBarChartProps) {
-  return <Bar options={setOptions(chartTitle)} data={setBarData(dataset)} />;
+  return (
+    <ChartSurface>
+      <Bar options={setOptions(chartTitle)} data={setBarData(dataset)} />;
+    </ChartSurface>
+  );
 }
 
 export default VerticalBarChart;
