@@ -1,6 +1,9 @@
 import { createColumnHelper } from '@tanstack/react-table';
 
+import ErrorPage from './ErrorPage';
+import Loading from './Loading';
 import Table from './Table';
+import useInvoices from '../api/hooks/useInvoices';
 
 const columnHelper = createColumnHelper<Person>();
 
@@ -75,6 +78,15 @@ const defaultData: Person[] = [
 (or total margin, depending on switcher value).
  */
 function InvoiceTable() {
+  // const { state } = useFilter();
+
+  const { status, error, data } = useInvoices();
+
+  if (status === 'loading') return <Loading />;
+  if (status === 'error') return <ErrorPage error={error as Error} />;
+
+  console.log(data);
+
   return <Table data={defaultData} columns={columns} />;
 }
 
