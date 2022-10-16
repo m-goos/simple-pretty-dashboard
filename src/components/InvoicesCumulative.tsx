@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import client from '../api/client';
-import { TRevenuesMonthly, TRevenuesWeekly } from '../api/types';
+import { TRevenuesMonthly, TRevenuesWeekly } from '../api/APITypes';
 import { useFilter } from '../context/filterContext';
 import ErrorPage from './ErrorPage';
 import LineChart, { IChartData } from './LineChart';

@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import client from '../api/client';
-import { TCategoriesRevenue } from '../api/types';
+import { TCategoriesRevenue } from '../api/APITypes';
 import { useFilter } from '../context/filterContext';
 import ErrorPage from './ErrorPage';
 
