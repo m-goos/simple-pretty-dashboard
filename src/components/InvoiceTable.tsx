@@ -45,25 +45,6 @@ const columns = [
   }),
 ];
 
-const exampleInvoiceData: TInvoice[] = [
-  {
-    customer_name: 'Saidi Castex',
-    id: 1,
-    date: '2020-07-18',
-    region: 'Australia',
-    total_invoice: 4208.75,
-    total_margin: 655,
-  },
-  {
-    customer_name: 'Martin Muijs',
-    id: 2,
-    date: '2020-04-10',
-    total_invoice: 318.98,
-    total_margin: 18.14,
-    region: 'USA',
-  },
-];
-
 /**
  * @returns List of the 15 latest invoices by date, with id, date, costumer name, region, invoice total
 (or total margin, depending on switcher value).
@@ -76,12 +57,17 @@ function InvoiceTable() {
   if (status === 'loading') return <Loading />;
   if (status === 'error') return <ErrorPage error={error as Error} />;
 
-  console.log(data);
   const invoiceTitle = `Latest Invoices (${state.financialFilter})`;
+
+  const sortedByLatestDate = data.slice().sort((a, b) => {
+    return new Date(b.date).getTime() - new Date(a.date).getTime();
+  });
+
+  const latestFifteenInvoices = sortedByLatestDate.slice(0, 14);
 
   return (
     <Table<TInvoice>
-      data={exampleInvoiceData}
+      data={latestFifteenInvoices}
       columns={columns}
       title={invoiceTitle}
     />
