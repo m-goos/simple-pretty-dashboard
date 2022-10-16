@@ -39,22 +39,16 @@ function RadioGroupButtons({ options, onChange }: RadioGroupButtonsProps) {
                 }
               >
                 {({ active, checked }) => (
-                  <>
-                    <div className="flex w-full items-center justify-between">
-                      <div className="flex items-center">
-                        <div className="text-sm">
-                          <RadioGroup.Label
-                            as="p"
-                            className={`font-medium ${
-                              checked ? 'text-white' : 'text-gray-900'
-                            }`}
-                          >
-                            {option}
-                          </RadioGroup.Label>
-                        </div>
-                      </div>
-                    </div>
-                  </>
+                  <div className="flex w-full items-center justify-between text-sm">
+                    <RadioGroup.Label
+                      as="p"
+                      className={`font-medium ${
+                        checked ? 'text-white' : 'text-gray-900'
+                      }`}
+                    >
+                      {option}
+                    </RadioGroup.Label>
+                  </div>
                 )}
               </RadioGroup.Option>
             ))}
