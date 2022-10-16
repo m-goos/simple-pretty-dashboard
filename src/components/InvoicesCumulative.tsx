@@ -21,39 +21,34 @@ function InvoicesCumulative() {
   if (error) return <ErrorPage error={error as Error} />;
   if (!data) return <NoResult />;
 
-  const title = `Cumulative ${state.timeFilter} invoice ${state.financialFilter} in €`;
+  const chartTitle = `Cumulative ${state.timeFilter} invoice ${state.financialFilter} in €`;
 
-  let revenueData: IChartData = {
-    labels: [''],
+  const sortedByDate = data.slice().sort((a, b) => {
+    return new Date(a.start_date).getTime() - new Date(b.start_date).getTime();
+  });
+
+  /** e.g. '2020 W07' or '2020-02' */
+  const labels =
+    state.timeFilter === 'weekly'
+      ? (sortedByDate as TRevenuesWeekly).map((week) => week.week)
+      : (sortedByDate as TRevenuesMonthly).map((month) => month.month);
+
+  /** based on toggled filter, active data changes */
+  const activeData = sortedByDate.map(
+    (timePeriod) => timePeriod[`total_${state.financialFilter}`]
+  );
+
+  const revenueData: IChartData = {
+    labels: labels,
     dataset: {
-      data: [0],
-      label: title,
+      data: activeData,
+      label: chartTitle,
     },
   };
 
-  if (state.timeFilter === 'monthly') {
-    // @TODO (next step): sort data
-    revenueData = {
-      labels: (data as TRevenuesMonthly).map((month) => month.month),
-      dataset: {
-        label: title,
-        data: data.map((month) => month[`total_${state.financialFilter}`]),
-      },
-    };
-  }
-  if (state.timeFilter === 'weekly') {
-    revenueData = {
-      labels: (data as TRevenuesWeekly).map((week) => week.week),
-      dataset: {
-        label: title,
-        data: data.map((week) => week[`total_${state.financialFilter}`]),
-      },
-    };
-  }
-
   return (
     <ChartSurface>
-      <LineChart title={title} data={revenueData} />
+      <LineChart title={chartTitle} data={revenueData} />
     </ChartSurface>
   );
 }
