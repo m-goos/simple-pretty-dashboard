@@ -3,6 +3,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 import './App.css';
 import Filter from './components/Filter';
+import InvoicesCumulative from './components/InvoicesCumulative';
 import Navbar from './components/Navbar';
 import Revenue from './components/Revenue';
 import { FilterProvider } from './context/filterContext';
@@ -16,6 +17,7 @@ function App() {
         <Navbar />
         <FilterProvider>
           <Filter />
+          <InvoicesCumulative />
           <Revenue />
         </FilterProvider>
       </div>
