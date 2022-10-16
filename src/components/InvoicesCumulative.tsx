@@ -2,7 +2,6 @@ import { useQuery } from '@tanstack/react-query';
 import client from '../api/client';
 import { TRevenuesMonthly, TRevenuesWeekly } from '../api/types';
 import { useFilter } from '../context/filterContext';
-import ChartSurface from './ChartSurface';
 import ErrorPage from './ErrorPage';
 import LineChart, { IChartData } from './LineChart';
 import Loading from './Loading';
@@ -46,11 +45,7 @@ function InvoicesCumulative() {
     },
   };
 
-  return (
-    <ChartSurface>
-      <LineChart title={chartTitle} data={revenueData} />
-    </ChartSurface>
-  );
+  return <LineChart title={chartTitle} data={revenueData} />;
 }
 
 export default InvoicesCumulative;

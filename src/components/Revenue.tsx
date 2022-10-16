@@ -17,7 +17,7 @@ function Revenue() {
 
   const { state } = useFilter();
 
-  const [barData, setBarData] = useState<IBarDataset | null>(null);
+  const [productData, setProductData] = useState<IBarDataset | null>(null);
 
   useEffect(() => {
     if (data) {
@@ -28,17 +28,17 @@ function Revenue() {
       const activeData =
         state.financialFilter === 'margin' ? totalMargin : totalRevenue;
 
-      setBarData({ labels: productNames, data: activeData });
+      setProductData({ labels: productNames, data: activeData });
     }
   }, [state.financialFilter, data]);
 
   if (isLoading) return <Loading />;
   if (error) return <ErrorPage error={error as Error} />;
-  if (!data || !barData) return <NoResult />;
+  if (!data || !productData) return <NoResult />;
 
-  return (
-    <VerticalBarChart chartTitle={state.financialFilter} dataset={barData} />
-  );
+  const chartTitle = `Total ${state.financialFilter} in € by product`;
+
+  return <VerticalBarChart title={chartTitle} data={productData} />;
 }
 
 export default Revenue;

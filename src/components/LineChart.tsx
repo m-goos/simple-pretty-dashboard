@@ -10,6 +10,9 @@ import {
   Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
+import ChartSurface from './ChartSurface';
+import ChartTitle from './ChartTitle';
+import { CHART_OPTIONS } from '../constants';
 
 ChartJS.register(
   CategoryScale,
@@ -21,6 +24,10 @@ ChartJS.register(
   Legend
 );
 
+interface LineChartProps {
+  title: string;
+  data: IChartData;
+}
 export interface IChartData {
   labels: string[]; // months or weeks
   dataset: {
@@ -28,28 +35,6 @@ export interface IChartData {
     data: number[];
   };
 }
-
-interface LineChartProps {
-  title: string;
-  data: IChartData;
-}
-
-const setOptions = (title: string) => {
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        display: false,
-      },
-      title: {
-        display: true,
-        text: title,
-      },
-    },
-  };
-
-  return options;
-};
 
 const setData = (data: IChartData) => ({
   labels: data.labels,
@@ -64,7 +49,12 @@ const setData = (data: IChartData) => ({
 });
 
 function LineChart({ title, data }: LineChartProps) {
-  return <Line options={setOptions(title)} data={setData(data)} />;
+  return (
+    <ChartSurface>
+      <ChartTitle title={title} />
+      <Line options={CHART_OPTIONS} data={setData(data)} />
+    </ChartSurface>
+  );
 }
 
 export default LineChart;

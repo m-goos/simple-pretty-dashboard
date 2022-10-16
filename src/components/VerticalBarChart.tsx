@@ -9,8 +9,9 @@ import {
   Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
-import { TFinancialFilter } from '../context/filterContext';
+import { CHART_OPTIONS } from '../constants';
 import ChartSurface from './ChartSurface';
+import ChartTitle from './ChartTitle';
 
 ChartJS.register(
   CategoryScale,
@@ -21,6 +22,10 @@ ChartJS.register(
   Legend
 );
 
+interface VerticalBarChartProps {
+  title: string;
+  data: IBarDataset;
+}
 interface IBarChartData {
   labels: string[];
   datasets: {
@@ -34,26 +39,9 @@ export interface IBarDataset {
   data: number[];
 }
 
-const setOptions = (label: TFinancialFilter) => {
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        display: false,
-      },
-      title: {
-        display: true,
-        text: `Total ${label} in € by product`,
-      },
-    },
-  };
-
-  return options;
-};
-
-const setBarData = (dataset: IBarDataset): IBarChartData => {
+const setBarData = (data: IBarDataset): IBarChartData => {
   const processedData: IBarChartData = {
-    labels: dataset.labels,
+    labels: data.labels,
     datasets: [
       {
         backgroundColor: [
@@ -63,22 +51,18 @@ const setBarData = (dataset: IBarDataset): IBarChartData => {
           '#e8c3b9',
           '#c45850',
         ],
-        data: dataset.data,
+        data: data.data,
       },
     ],
   };
   return processedData;
 };
 
-interface VerticalBarChartProps {
-  chartTitle: TFinancialFilter;
-  dataset: IBarDataset;
-}
-
-function VerticalBarChart({ chartTitle, dataset }: VerticalBarChartProps) {
+function VerticalBarChart({ title, data }: VerticalBarChartProps) {
   return (
     <ChartSurface>
-      <Bar options={setOptions(chartTitle)} data={setBarData(dataset)} />
+      <ChartTitle title={title} />
+      <Bar options={CHART_OPTIONS} data={setBarData(data)} />
     </ChartSurface>
   );
 }

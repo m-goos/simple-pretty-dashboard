@@ -12,3 +12,17 @@ export type TEndpoint =
 export const BASE_URL = process.env.REACT_APP_BASE_URL as string;
 
 export const WEEK_NUMBERS = [];
+
+/** defaults for react-chartjs components  */
+export const CHART_OPTIONS = {
+  responsive: true,
+  plugins: {
+    legend: {
+      display: false,
+    },
+    title: {
+      display: false,
+      text: '',
+    },
+  },
+};
