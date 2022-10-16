@@ -3,7 +3,7 @@ import client from '../api/client';
 import { TRevenuesMonthly, TRevenuesWeekly } from '../api/APITypes';
 import { useFilter } from '../context/filterContext';
 import ErrorPage from './ErrorPage';
-import LineChart, { IChartData } from './LineChart';
+import LineChart, { IChartData } from './charts/LineChart';
 import Loading from './Loading';
 import NoResult from './NoData';
 

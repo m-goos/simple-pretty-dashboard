@@ -7,7 +7,7 @@ import ErrorPage from './ErrorPage';
 
 import Loading from './Loading';
 import NoResult from './NoData';
-import VerticalBarChart, { IBarDataset } from './VerticalBarChart';
+import VerticalBarChart, { IBarDataset } from './charts/VerticalBarChart';
 
 function Revenue() {
   const { isLoading, error, data } = useQuery<TCategoriesRevenue>(
