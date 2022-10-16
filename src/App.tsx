@@ -17,8 +17,10 @@ function App() {
         <Navbar />
         <FilterProvider>
           <Filter />
-          <InvoicesCumulative />
-          <Revenue />
+          <div className="space-y-2 px-4 py-2">
+            <InvoicesCumulative />
+            <Revenue />
+          </div>
         </FilterProvider>
       </div>
       <ReactQueryDevtools initialIsOpen={false} />
