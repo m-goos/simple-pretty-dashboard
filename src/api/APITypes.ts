@@ -59,4 +59,4 @@ export interface IInvoice {
   region: string;
 }
 
-export type IInvoices = IInvoice[];
+export type TInvoices = IInvoice[];
