@@ -37,3 +37,26 @@ interface IRevenueWeek {
 }
 
 export type TRevenuesWeekly = IRevenueWeek[];
+
+export interface IInvoiceLine {
+  product_id: number;
+  product_name: string;
+  product_category: string;
+  unit_price: number;
+  quantity: number;
+  total_line: number;
+  total_margin: number;
+}
+
+export interface IInvoice {
+  id: number;
+  customer_id: number;
+  customer_name: string;
+  date: string;
+  invoice_lines: IInvoiceLine[];
+  total_invoice: number;
+  total_margin: number;
+  region: string;
+}
+
+export type IInvoices = IInvoice[];
