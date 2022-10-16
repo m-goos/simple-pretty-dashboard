@@ -14,7 +14,7 @@ function Revenue() {
   if (status === 'loading') return <Loading />;
   if (status === 'error') return <ErrorPage error={error as Error} />;
 
-  const chartTitle = `Total ${state.financialFilter} in € by product`;
+  const DataTitle = `Total ${state.financialFilter} in € by product`;
 
   const labels = data.map((product) => product.category_name);
 
@@ -28,7 +28,7 @@ function Revenue() {
     data: activeData,
   };
 
-  return <VerticalBarChart title={chartTitle} data={productData1} />;
+  return <VerticalBarChart title={DataTitle} data={productData1} />;
 }
 
 export default Revenue;

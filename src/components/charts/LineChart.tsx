@@ -10,7 +10,7 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import DataSurface from '../DataSurface';
-import ChartTitle from '../ChartTitle';
+import DataTitle from '../DataTitle';
 import { CHART_OPTIONS } from '../../constants';
 import { IChartDataSet, IChartProps } from './chartTypes';
 
@@ -38,7 +38,7 @@ const setData = (data: IChartDataSet) => ({
 function LineChart({ title, data }: IChartProps) {
   return (
     <DataSurface>
-      <ChartTitle title={title} />
+      <DataTitle title={title} />
       <Line options={CHART_OPTIONS} data={setData(data)} />
     </DataSurface>
   );

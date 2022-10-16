@@ -10,7 +10,7 @@ import {
 import { Bar } from 'react-chartjs-2';
 import { CHART_OPTIONS } from '../../constants';
 import DataSurface from '../DataSurface';
-import ChartTitle from '../ChartTitle';
+import DataTitle from '../DataTitle';
 import { IChartDataSet, IChartProps } from './chartTypes';
 
 ChartJS.register(
@@ -35,7 +35,7 @@ const setBarData = (data: IChartDataSet) => ({
 function VerticalBarChart({ title, data }: IChartProps) {
   return (
     <DataSurface>
-      <ChartTitle title={title} />
+      <DataTitle title={title} />
       <Bar options={CHART_OPTIONS} data={setBarData(data)} />
     </DataSurface>
   );

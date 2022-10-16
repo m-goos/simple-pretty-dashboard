@@ -14,7 +14,7 @@ function InvoicesCumulative() {
   if (status === 'loading') return <Loading />;
   if (status === 'error') return <ErrorPage error={error as Error} />;
 
-  const chartTitle = `Cumulative ${state.timeFilter} invoice ${state.financialFilter} in €`;
+  const DataTitle = `Cumulative ${state.timeFilter} invoice ${state.financialFilter} in €`;
 
   const sortedByDate = data.slice().sort((a, b) => {
     return new Date(a.start_date).getTime() - new Date(b.start_date).getTime();
@@ -36,7 +36,7 @@ function InvoicesCumulative() {
     data: activeData,
   };
 
-  return <LineChart title={chartTitle} data={revenueData} />;
+  return <LineChart title={DataTitle} data={revenueData} />;
 }
 
 export default InvoicesCumulative;
