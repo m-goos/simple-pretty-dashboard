@@ -9,7 +9,6 @@ import DataTitle from './DataTitle';
 
 interface TableProps<TData> {
   columns: any;
-  // columns: ColumnDef<TData>[];
   data: TData[];
   title: string;
 }

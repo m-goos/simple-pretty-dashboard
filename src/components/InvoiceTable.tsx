@@ -18,28 +18,31 @@ export type TInvoice = {
 };
 
 const columns = [
-  columnHelper.accessor((row) => row.customer_name, {
-    id: 'customer_name',
-    header: () => <span>Customer Name</span>,
+  columnHelper.accessor('customer_name', {
+    header: () => 'Customer Name',
     cell: (info) => info.getValue(),
     // footer: (info) => info.column.id,
   }),
   columnHelper.accessor('id', {
     header: () => 'Invoice ID',
-    cell: (info) => info.renderValue(),
+    cell: (info) => info.getValue(),
   }),
-  // columnHelper.accessor('visits', {
-  //   header: () => <span>Visits</span>,
-  //   footer: (info) => info.column.id,
-  // }),
-  // columnHelper.accessor('status', {
-  //   header: 'Status',
-  //   footer: (info) => info.column.id,
-  // }),
-  // columnHelper.accessor('progress', {
-  //   header: 'Profile Progress',
-  //   footer: (info) => info.column.id,
-  // }),
+  columnHelper.accessor('date', {
+    header: () => 'Date',
+    cell: (info) => info.getValue(),
+  }),
+  columnHelper.accessor('region', {
+    header: () => 'Region',
+    cell: (info) => info.getValue(),
+  }),
+  columnHelper.accessor('total_invoice', {
+    header: () => 'Revenue',
+    cell: (info) => info.getValue(),
+  }),
+  columnHelper.accessor('total_margin', {
+    header: () => 'Margin',
+    cell: (info) => info.getValue(),
+  }),
 ];
 
 const exampleInvoiceData: TInvoice[] = [
