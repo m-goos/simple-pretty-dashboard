@@ -28,7 +28,8 @@ This is the workflow I went through for this project:
    1. Pick a library for bar charts and line charts, simply the most popular one, chart.js, and to save some time the [react-version](https://react-chartjs-2.js.org/). No custom [D3JS](https://d3js.org/) in this timeframe..
    2. Pick a library for tables: [tanstack table](https://tanstack.com/table/v8)
    3. Use TailwindCSS and use some of their components, e.g. [headlessui.dev](https://headlessui.com/react/radio-group)
-   4. PS: [this](https://www.robinwieruch.de/react-libraries/#react-animation-libraries) is a nice overview of React libraries
+   4. Use tanstack query to handle API calls, caching, re-fetching/invalidating, handling multiple promises, [aborting promises](https://developer.mozilla.org/en-US/docs/Web/API/AbortController), etc..
+   5. PS: [this](https://www.robinwieruch.de/react-libraries/#react-animation-libraries) is a nice overview of React libraries
 6. Set up tools to enforce basic quality for git history:
    1. husky
    2. commit message linter, [here](https://commitlint.js.org/#/guides-local-setup?id=install-commitlint)
@@ -44,7 +45,7 @@ This is the workflow I went through for this project:
    3. Make it responsive
 
 If I have some time after finishing all the requirements:
-1. Cards showing some important data 'at a glance', e.g.
+1. Cards showing some important data 'at a glance', so-called [stats](https://tailwindui.com/components/application-ui/data-display/stats)
    1. Total revenue (YTD): €2.234.756
    2. Top category (YTD): Fish
    3. Top region (YTD): Australia
