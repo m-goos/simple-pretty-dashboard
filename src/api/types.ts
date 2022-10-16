@@ -26,3 +26,14 @@ interface IRevenueMonth {
 }
 
 export type TRevenuesMonthly = IRevenueMonth[];
+
+interface IRevenueWeek {
+  week: string;
+  start_date: string;
+  end_date: string;
+  invoices_count: number;
+  total_margin: number;
+  total_revenue: number;
+}
+
+export type TRevenuesWeekly = IRevenueWeek[];

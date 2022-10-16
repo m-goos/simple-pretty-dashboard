@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import client from '../api/client';
+import { TRevenuesMonthly, TRevenuesWeekly } from '../api/types';
 import { useFilter } from '../context/filterContext';
 import ErrorPage from './ErrorPage';
 import LineChart from './LineChart';
@@ -10,9 +11,10 @@ function InvoicesCumulative() {
   const { state } = useFilter();
 
   // @TODO: add query type
-  const { isLoading, error, data } = useQuery(
-    [`/revenues/${state.timeFilter}`],
-    () => client(`/revenues/${state.timeFilter}`)
+  const { isLoading, error, data } = useQuery<
+    TRevenuesWeekly | TRevenuesMonthly
+  >([`/revenues/${state.timeFilter}`], () =>
+    client(`/revenues/${state.timeFilter}`)
   );
 
   if (isLoading) return <Loading />;
@@ -25,7 +27,6 @@ function InvoicesCumulative() {
         timeFilter={state.timeFilter}
         financialFilter={state.financialFilter}
       />
-      ;
     </div>
   );
 }
