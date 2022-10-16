@@ -21,6 +21,7 @@ function Revenue() {
 
   useEffect(() => {
     if (data) {
+      // @TODO use a more compact array method
       const productNames = data.map((product) => product.category_name);
       const totalRevenue = data.map((product) => product.total_revenue);
       const totalMargin = data.map((product) => product.total_margin);
