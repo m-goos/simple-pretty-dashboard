@@ -78,7 +78,7 @@ interface VerticalBarChartProps {
 function VerticalBarChart({ chartTitle, dataset }: VerticalBarChartProps) {
   return (
     <ChartSurface>
-      <Bar options={setOptions(chartTitle)} data={setBarData(dataset)} />;
+      <Bar options={setOptions(chartTitle)} data={setBarData(dataset)} />
     </ChartSurface>
   );
 }
