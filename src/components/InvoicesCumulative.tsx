@@ -1,25 +1,18 @@
-import { useQuery } from '@tanstack/react-query';
-import client from '../api/client';
 import { TRevenuesMonthly, TRevenuesWeekly } from '../api/APITypes';
 import { useFilter } from '../context/filterContext';
 import ErrorPage from './ErrorPage';
 import LineChart from './charts/LineChart';
 import Loading from './Loading';
-import NoResult from './NoData';
 import { IChartDataSet } from './charts/chartTypes';
+import useRevenuesTimePeriod from '../api/hooks/useRevenuesTimePeriod';
 
 function InvoicesCumulative() {
   const { state } = useFilter();
 
-  const { isLoading, error, data } = useQuery<
-    TRevenuesWeekly | TRevenuesMonthly
-  >([`/revenues/${state.timeFilter}`], () =>
-    client(`/revenues/${state.timeFilter}`)
-  );
+  const { status, error, data } = useRevenuesTimePeriod(state.timeFilter);
 
-  if (isLoading) return <Loading />;
-  if (error) return <ErrorPage error={error as Error} />;
-  if (!data) return <NoResult />;
+  if (status === 'loading') return <Loading />;
+  if (status === 'error') return <ErrorPage error={error as Error} />;
 
   const chartTitle = `Cumulative ${state.timeFilter} invoice ${state.financialFilter} in €`;
 
