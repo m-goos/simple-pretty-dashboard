@@ -10,7 +10,7 @@ import {
   Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import { TTimeFilter } from '../context/filterContext';
+import { TFinancialFilter, TTimeFilter } from '../context/filterContext';
 
 ChartJS.register(
   CategoryScale,
@@ -23,10 +23,14 @@ ChartJS.register(
 );
 
 interface LineChartProps {
-  lineChartTitle: TTimeFilter;
+  timeFilter: TTimeFilter;
+  financialFilter: TFinancialFilter;
 }
 
-const setOptions = (label: TTimeFilter) => {
+const setOptions = (
+  timeFilter: TTimeFilter,
+  financialFilter: TFinancialFilter
+) => {
   const options = {
     responsive: true,
     plugins: {
@@ -35,7 +39,7 @@ const setOptions = (label: TTimeFilter) => {
       },
       title: {
         display: true,
-        text: `Cumulative ${label} invoice revenue in €`,
+        text: `Cumulative ${timeFilter} invoice ${financialFilter} in €`,
       },
     },
   };
@@ -57,8 +61,8 @@ export const data = {
   ],
 };
 
-function LineChart({ lineChartTitle }: LineChartProps) {
-  return <Line options={setOptions(lineChartTitle)} data={data} />;
+function LineChart({ timeFilter, financialFilter }: LineChartProps) {
+  return <Line options={setOptions(timeFilter, financialFilter)} data={data} />;
 }
 
 export default LineChart;
