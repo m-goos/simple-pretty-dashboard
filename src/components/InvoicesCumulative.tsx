@@ -40,10 +40,7 @@ function InvoicesCumulative() {
 
   const revenueData: IChartDataSet = {
     labels: labels,
-    // dataset: {
     data: activeData,
-    // label: chartTitle,
-    // },
   };
 
   return <LineChart title={chartTitle} data={revenueData} />;

@@ -1,5 +1,4 @@
 import { useQuery } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
 import client from '../api/client';
 import { TCategoriesRevenue } from '../api/APITypes';
 import { useFilter } from '../context/filterContext';
@@ -11,35 +10,32 @@ import VerticalBarChart from './charts/VerticalBarChart';
 import { IChartDataSet } from './charts/chartTypes';
 
 function Revenue() {
+  const { state } = useFilter();
+
   const { isLoading, error, data } = useQuery<TCategoriesRevenue>(
     ['/categories/revenues'],
     () => client('/categories/revenues')
   );
 
-  const { state } = useFilter();
-
-  const [productData, setProductData] = useState<IChartDataSet | null>(null);
-
-  useEffect(() => {
-    if (data) {
-      // @TODO use a more compact array method
-      const productNames = data.map((product) => product.category_name);
-      const totalRevenue = data.map((product) => product.total_revenue);
-      const totalMargin = data.map((product) => product.total_margin);
-      const activeData =
-        state.financialFilter === 'margin' ? totalMargin : totalRevenue;
-
-      setProductData({ labels: productNames, data: activeData });
-    }
-  }, [state.financialFilter, data]);
-
   if (isLoading) return <Loading />;
   if (error) return <ErrorPage error={error as Error} />;
-  if (!data || !productData) return <NoResult />;
+  if (!data) return <NoResult />;
 
   const chartTitle = `Total ${state.financialFilter} in € by product`;
 
-  return <VerticalBarChart title={chartTitle} data={productData} />;
+  const labels = data.map((product) => product.category_name);
+
+  /** based on toggled filter, active data changes */
+  const activeData = data.map(
+    (product) => product[`total_${state.financialFilter}`]
+  );
+
+  const productData1: IChartDataSet = {
+    labels: labels,
+    data: activeData,
+  };
+
+  return <VerticalBarChart title={chartTitle} data={productData1} />;
 }
 
 export default Revenue;
