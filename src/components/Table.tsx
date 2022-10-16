@@ -7,14 +7,15 @@ import { useReducer } from 'react';
 import DataSurface from './DataSurface';
 import DataTitle from './DataTitle';
 
-interface TableProps {
+interface TableProps<TData> {
   columns: any;
-  data: any;
+  // columns: ColumnDef<TData>[];
+  data: TData[];
   title: string;
 }
 
 // from: https://tanstack.com/table/v8/docs/examples/react/basic
-function Table({ columns, data, title }: TableProps) {
+function Table<TData>({ columns, data, title }: TableProps<TData>) {
   const rerender = useReducer(() => ({}), {})[1];
 
   const table = useReactTable({

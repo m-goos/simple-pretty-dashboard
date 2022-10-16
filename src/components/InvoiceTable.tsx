@@ -8,7 +8,7 @@ import { useFilter } from '../context/filterContext';
 
 const columnHelper = createColumnHelper<TInvoice>();
 
-type TInvoice = {
+export type TInvoice = {
   customer_name: string;
   id: number;
   date: string;
@@ -20,15 +20,14 @@ type TInvoice = {
 const columns = [
   columnHelper.accessor((row) => row.customer_name, {
     id: 'customer_name',
-    cell: (info) => info.getValue(),
     header: () => <span>Customer Name</span>,
+    cell: (info) => info.getValue(),
     // footer: (info) => info.column.id,
   }),
-  // columnHelper.accessor('age', {
-  //   header: () => 'Age',
-  //   cell: (info) => info.renderValue(),
-  //   footer: (info) => info.column.id,
-  // }),
+  columnHelper.accessor('id', {
+    header: () => 'Invoice ID',
+    cell: (info) => info.renderValue(),
+  }),
   // columnHelper.accessor('visits', {
   //   header: () => <span>Visits</span>,
   //   footer: (info) => info.column.id,
@@ -78,7 +77,11 @@ function InvoiceTable() {
   const invoiceTitle = `Latest Invoices (${state.financialFilter})`;
 
   return (
-    <Table data={exampleInvoiceData} columns={columns} title={invoiceTitle} />
+    <Table<TInvoice>
+      data={exampleInvoiceData}
+      columns={columns}
+      title={invoiceTitle}
+    />
   );
 }
 
