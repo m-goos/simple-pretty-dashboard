@@ -1,4 +1,3 @@
-// https://react-chartjs-2.js.org/examples/vertical-bar-chart
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -12,6 +11,7 @@ import { Bar } from 'react-chartjs-2';
 import { CHART_OPTIONS } from '../../constants';
 import ChartSurface from './ChartSurface';
 import ChartTitle from '../ChartTitle';
+import { IChartDataSet, IChartProps } from './chartTypes';
 
 ChartJS.register(
   CategoryScale,
@@ -22,43 +22,17 @@ ChartJS.register(
   Legend
 );
 
-interface VerticalBarChartProps {
-  title: string;
-  data: IBarDataset;
-}
-interface IBarChartData {
-  labels: string[];
-  datasets: {
-    data: number[];
-    backgroundColor: string[];
-  }[];
-}
+const setBarData = (data: IChartDataSet) => ({
+  labels: data.labels,
+  datasets: [
+    {
+      data: data.data,
+      backgroundColor: ['#3e95cd', '#8e5ea2', '#3cba9f', '#e8c3b9', '#c45850'],
+    },
+  ],
+});
 
-export interface IBarDataset {
-  labels: string[];
-  data: number[];
-}
-
-const setBarData = (data: IBarDataset): IBarChartData => {
-  const processedData: IBarChartData = {
-    labels: data.labels,
-    datasets: [
-      {
-        backgroundColor: [
-          '#3e95cd',
-          '#8e5ea2',
-          '#3cba9f',
-          '#e8c3b9',
-          '#c45850',
-        ],
-        data: data.data,
-      },
-    ],
-  };
-  return processedData;
-};
-
-function VerticalBarChart({ title, data }: VerticalBarChartProps) {
+function VerticalBarChart({ title, data }: IChartProps) {
   return (
     <ChartSurface>
       <ChartTitle title={title} />

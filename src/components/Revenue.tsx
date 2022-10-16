@@ -7,7 +7,8 @@ import ErrorPage from './ErrorPage';
 
 import Loading from './Loading';
 import NoResult from './NoData';
-import VerticalBarChart, { IBarDataset } from './charts/VerticalBarChart';
+import VerticalBarChart from './charts/VerticalBarChart';
+import { IChartDataSet } from './charts/chartTypes';
 
 function Revenue() {
   const { isLoading, error, data } = useQuery<TCategoriesRevenue>(
@@ -17,7 +18,7 @@ function Revenue() {
 
   const { state } = useFilter();
 
-  const [productData, setProductData] = useState<IBarDataset | null>(null);
+  const [productData, setProductData] = useState<IChartDataSet | null>(null);
 
   useEffect(() => {
     if (data) {

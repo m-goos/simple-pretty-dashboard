@@ -3,9 +3,10 @@ import client from '../api/client';
 import { TRevenuesMonthly, TRevenuesWeekly } from '../api/APITypes';
 import { useFilter } from '../context/filterContext';
 import ErrorPage from './ErrorPage';
-import LineChart, { IChartData } from './charts/LineChart';
+import LineChart from './charts/LineChart';
 import Loading from './Loading';
 import NoResult from './NoData';
+import { IChartDataSet } from './charts/chartTypes';
 
 function InvoicesCumulative() {
   const { state } = useFilter();
@@ -37,12 +38,12 @@ function InvoicesCumulative() {
     (timePeriod) => timePeriod[`total_${state.financialFilter}`]
   );
 
-  const revenueData: IChartData = {
+  const revenueData: IChartDataSet = {
     labels: labels,
-    dataset: {
-      data: activeData,
-      label: chartTitle,
-    },
+    // dataset: {
+    data: activeData,
+    // label: chartTitle,
+    // },
   };
 
   return <LineChart title={chartTitle} data={revenueData} />;

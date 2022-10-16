@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -13,6 +12,7 @@ import { Line } from 'react-chartjs-2';
 import ChartSurface from './ChartSurface';
 import ChartTitle from '../ChartTitle';
 import { CHART_OPTIONS } from '../../constants';
+import { IChartDataSet, IChartProps } from './chartTypes';
 
 ChartJS.register(
   CategoryScale,
@@ -24,31 +24,18 @@ ChartJS.register(
   Legend
 );
 
-interface LineChartProps {
-  title: string;
-  data: IChartData;
-}
-export interface IChartData {
-  labels: string[]; // months or weeks
-  dataset: {
-    label: string;
-    data: number[];
-  };
-}
-
-const setData = (data: IChartData) => ({
+const setData = (data: IChartDataSet) => ({
   labels: data.labels,
   datasets: [
     {
-      label: data.dataset.label,
-      data: data.dataset.data,
+      data: data.data,
       borderColor: 'rgb(255, 99, 132)',
       backgroundColor: 'rgba(255, 99, 132, 0.5)',
     },
   ],
 });
 
-function LineChart({ title, data }: LineChartProps) {
+function LineChart({ title, data }: IChartProps) {
   return (
     <ChartSurface>
       <ChartTitle title={title} />
