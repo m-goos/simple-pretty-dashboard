@@ -4,7 +4,7 @@ import {
   getCoreRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-import { useReducer, useState } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 
 type Person = {
   firstName: string;
@@ -15,10 +15,10 @@ type Person = {
   progress: number;
 };
 
-interface TableProps {
-  columns: any;
-  data: any;
-}
+// interface TableProps {
+//   columns: any;
+//   data: any;
+// }
 
 const defaultData: Person[] = [
   {
@@ -84,6 +84,11 @@ const columns = [
 function Table() {
   const [data, setData] = useState(() => [...defaultData]);
   const rerender = useReducer(() => ({}), {})[1];
+
+  useEffect(() => {
+    // this will be an API call
+    setData([...defaultData]);
+  }, []);
 
   const table = useReactTable({
     data,
