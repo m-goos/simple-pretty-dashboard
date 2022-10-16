@@ -26,12 +26,3 @@ interface IRevenueMonth {
 }
 
 export type TRevenuesMonthly = IRevenueMonth[];
-
-export type TEndpoint =
-  | '/products'
-  | '/customers'
-  | '/invoices'
-  | '/revenues/monthly'
-  | '/revenues/weekly'
-  | '/customers/revenues'
-  | '/categories/revenues';

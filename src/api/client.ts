@@ -1,6 +1,4 @@
-import { TEndpoint } from './types';
-
-const BASE_URL = process.env.REACT_APP_BASE_URL as string;
+import { BASE_URL, TEndpoint } from '../constants';
 
 export async function client(endpoint: TEndpoint) {
   const result = await fetch(BASE_URL + endpoint).then((res) => res.json());
