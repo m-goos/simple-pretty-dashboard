@@ -5,6 +5,7 @@ import Loading from './Loading';
 import Table from './Table';
 import useInvoices from '../api/hooks/useInvoices';
 import { useFilter } from '../context/filterContext';
+import { formatCurrency } from '../utils/formatCurrency';
 
 const columnHelper = createColumnHelper<TInvoice>();
 
@@ -16,14 +17,6 @@ export type TInvoice = {
   total_invoice: number;
   total_margin: number;
 };
-
-const formatCurrency = (number: number) =>
-  Intl.NumberFormat('nl-NL', {
-    style: 'currency',
-    currency: 'EUR',
-  }).format(number);
-
-console.log(formatCurrency(5.1234));
 
 const columns = [
   columnHelper.accessor('customer_name', {
