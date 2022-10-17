@@ -5,6 +5,7 @@ import LineChart from './charts/LineChart';
 import Loading from './Loading';
 import { IChartDataSet } from './charts/chartTypes';
 import useRevenuesTimePeriod from '../api/hooks/useRevenuesTimePeriod';
+import { cumulativeSum } from '../utils/cumulativeSum';
 
 function InvoicesCumulative() {
   const { state } = useFilter();
@@ -31,9 +32,11 @@ function InvoicesCumulative() {
     (timePeriod) => timePeriod[`total_${state.financialFilter}`]
   );
 
+  const cumulative = activeData.map(cumulativeSum());
+
   const revenueData: IChartDataSet = {
     labels: labels,
-    data: activeData,
+    data: cumulative,
   };
 
   return <LineChart title={DataTitle} data={revenueData} />;
