@@ -40,6 +40,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start:local-network": "REACT_APP_BASE_URL=\"http://192.168.2.5:3001/api\" react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "test:ci": "react-scripts test --watchAll=false",
