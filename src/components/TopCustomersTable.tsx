@@ -8,9 +8,11 @@ import Table from './Table';
 
 /**
  *  @TODO
- * 2. get data from API, format where necessary, pass to component
- * 3. sort and pick top 15
- * 4. implement toggle margin/revenue
+ * 2. x get data from API, format where necessary, pass to component
+ * 3. x sort and pick top 15
+ * 4. x implement toggle margin/revenue
+ * 5. re-use data from /invoices endpoint
+ * 6. get array of regions per customer
  *
  * **SPECS**
  * List of our best customers, with their
@@ -20,25 +22,21 @@ import Table from './Table';
  * * total revenue (or total margin, depending on switcher value).
  * */
 
-interface TCustomer {
+interface ICustomer {
   customer_name: string;
-  // region: string; @TODO get region from other endpoint
   invoices_count: number;
   total_revenue: number;
   total_margin: number;
+  // region: string[]; @TODO get region from other endpoint
 }
 
-const columnHelper = createColumnHelper<TCustomer>();
+const columnHelper = createColumnHelper<ICustomer>();
 
 const columns = [
   columnHelper.accessor('customer_name', {
     header: () => 'Customer Name',
     cell: (info) => info.getValue(),
   }),
-  // columnHelper.accessor('region', {
-  //   header: () => 'Region',
-  //   cell: (info) => info.getValue(),
-  // }),
   columnHelper.accessor('invoices_count', {
     header: () => '# of invoices',
     cell: (info) => info.getValue(),
@@ -51,6 +49,10 @@ const columns = [
     header: () => 'Revenue',
     cell: (info) => formatCurrency(info.getValue()),
   }),
+  // columnHelper.accessor('regions', {
+  //   header: () => 'Region',
+  //   cell: (info) => info.getValue(),
+  // }),
 ];
 
 function TopCustomersTable() {
@@ -81,7 +83,7 @@ function TopCustomersTable() {
   };
 
   return (
-    <Table<TCustomer>
+    <Table<ICustomer>
       data={bestFifteenCustomers}
       columns={columns}
       title={bestCustomersTitle}
