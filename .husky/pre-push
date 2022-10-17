@@ -3,3 +3,4 @@
 
 yarn test:ci
 yarn prettier:ci
+yarn build
