@@ -60,3 +60,13 @@ export interface IInvoice {
 }
 
 export type TInvoices = IInvoice[];
+
+interface ICustomersRevenue {
+  customer_id: number;
+  customer_name: string;
+  total_revenue: number;
+  total_margin: number;
+  invoices_count: number;
+}
+
+export type TCustomersRevenues = ICustomersRevenue[];

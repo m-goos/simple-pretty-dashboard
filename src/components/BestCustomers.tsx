@@ -1,13 +1,14 @@
 import { createColumnHelper } from '@tanstack/react-table';
+import useCustomersRevenues from '../api/hooks/useCustomersRevenues';
 import { useFilter } from '../context/filterContext';
 import { formatCurrency } from '../utils/formatCurrency';
-
+import ErrorPage from './ErrorPage';
+import Loading from './Loading';
 import Table from './Table';
 
 /**
  *  @TODO
- * 1. set up table and columns with hardcoded data
- * 2. get data from API, format where necessary
+ * 2. get data from API, format where necessary, pass to component
  * 3. sort and pick top 15
  * 4. implement toggle margin/revenue
  *
@@ -64,6 +65,13 @@ const columns = [
 
 function BestCustomers() {
   const { state } = useFilter();
+
+  const { status, error, data } = useCustomersRevenues();
+
+  if (status === 'loading') return <Loading />;
+  if (status === 'error') return <ErrorPage error={error as Error} />;
+
+  console.log('data', data);
 
   const bestCustomersTitle = `Top Customers (${state.financialFilter})`;
 
