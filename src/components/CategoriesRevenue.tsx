@@ -7,7 +7,7 @@ import { IChartDataSet } from './charts/chartTypes';
 import useCategoriesRevenues from '../api/hooks/useCategoriesRevenues';
 import { TagIcon } from '@heroicons/react/24/outline';
 
-function Revenue() {
+function CategoriesRevenue() {
   const { state } = useFilter();
 
   const { status, error, data } = useCategoriesRevenues();
@@ -38,4 +38,4 @@ function Revenue() {
   );
 }
 
-export default Revenue;
+export default CategoriesRevenue;
