@@ -32,10 +32,10 @@ const setBarData = (data: IChartDataSet) => ({
   ],
 });
 
-function VerticalBarChart({ title, data }: IChartProps) {
+function VerticalBarChart({ title, data, icon }: IChartProps) {
   return (
     <DataSurface>
-      <DataTitle title={title} />
+      <DataTitle title={title} icon={icon} />
       <Bar options={CHART_OPTIONS} data={setBarData(data)} />
     </DataSurface>
   );

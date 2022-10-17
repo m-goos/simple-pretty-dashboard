@@ -35,10 +35,10 @@ const setData = (data: IChartDataSet) => ({
   ],
 });
 
-function LineChart({ title, data }: IChartProps) {
+function LineChart({ title, data, icon }: IChartProps) {
   return (
     <DataSurface>
-      <DataTitle title={title} />
+      <DataTitle title={title} icon={icon} />
       <Line options={CHART_OPTIONS} data={setData(data)} />
     </DataSurface>
   );

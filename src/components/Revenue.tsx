@@ -5,6 +5,7 @@ import Loading from './Loading';
 import VerticalBarChart from './charts/VerticalBarChart';
 import { IChartDataSet } from './charts/chartTypes';
 import useCategoriesRevenues from '../api/hooks/useCategoriesRevenues';
+import { TagIcon } from '@heroicons/react/24/outline';
 
 function Revenue() {
   const { state } = useFilter();
@@ -28,7 +29,13 @@ function Revenue() {
     data: activeData,
   };
 
-  return <VerticalBarChart title={DataTitle} data={productData1} />;
+  return (
+    <VerticalBarChart
+      title={DataTitle}
+      data={productData1}
+      icon={<TagIcon />}
+    />
+  );
 }
 
 export default Revenue;

@@ -3,6 +3,7 @@ import {
   getCoreRowModel,
   useReactTable,
 } from '@tanstack/react-table';
+import { ReactNode } from 'react';
 import DataSurface from './DataSurface';
 import DataTitle from './DataTitle';
 
@@ -13,6 +14,7 @@ interface TableProps<TData> {
   data: TData[];
   title: string;
   columnVisibility: visibilityFilter;
+  icon: ReactNode;
 }
 
 // from: https://tanstack.com/table/v8/docs/examples/react/basic
@@ -21,6 +23,7 @@ function Table<TData>({
   data,
   title,
   columnVisibility,
+  icon,
 }: TableProps<TData>) {
   const table = useReactTable({
     data,
@@ -31,10 +34,10 @@ function Table<TData>({
 
   return (
     <DataSurface>
-      <DataTitle title={title} />
+      <DataTitle title={title} icon={icon} />
       <div className="mt-2 flex flex-col">
-        <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+        <div className="-my-2 overflow-x-auto  lg:-mx-8">
+          <div className="inline-block min-w-full py-2 align-middle  lg:px-8">
             <div className="overflow-hidden rounded-lg border-b border-gray-200 shadow">
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">

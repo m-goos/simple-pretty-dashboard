@@ -6,6 +6,7 @@ import Table from './Table';
 import useInvoices from '../api/hooks/useInvoices';
 import { useFilter } from '../context/filterContext';
 import { formatCurrency } from '../utils/formatCurrency';
+import { DocumentTextIcon } from '@heroicons/react/24/outline';
 
 const columnHelper = createColumnHelper<TInvoice>();
 
@@ -72,6 +73,7 @@ function InvoiceTable() {
       columns={columns}
       title={invoiceTitle}
       columnVisibility={customColumnVisibility}
+      icon={<DocumentTextIcon />}
     />
   );
 }

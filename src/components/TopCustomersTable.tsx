@@ -1,3 +1,4 @@
+import { UserIcon } from '@heroicons/react/24/outline';
 import { createColumnHelper } from '@tanstack/react-table';
 import { IInvoice } from '../api/APITypes';
 
@@ -92,6 +93,7 @@ function TopCustomersTable() {
       columns={columns}
       title={topCustomersTitle}
       columnVisibility={customColumnVisibility}
+      icon={<UserIcon />}
     />
   );
 }

@@ -6,6 +6,7 @@ import Loading from './Loading';
 import { IChartDataSet } from './charts/chartTypes';
 import useRevenuesTimePeriod from '../api/hooks/useRevenuesTimePeriod';
 import { cumulativeSum } from '../utils/cumulativeSum';
+import { ArrowTrendingUpIcon } from '@heroicons/react/24/outline';
 
 function InvoicesCumulative() {
   const { state } = useFilter();
@@ -39,7 +40,13 @@ function InvoicesCumulative() {
     data: cumulative,
   };
 
-  return <LineChart title={DataTitle} data={revenueData} />;
+  return (
+    <LineChart
+      title={DataTitle}
+      data={revenueData}
+      icon={<ArrowTrendingUpIcon />}
+    />
+  );
 }
 
 export default InvoicesCumulative;
