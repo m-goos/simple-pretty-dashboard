@@ -22,21 +22,11 @@ import Table from './Table';
 
 interface TCustomer {
   customer_name: string;
-  region: string;
+  // region: string; @TODO get region from other endpoint
   invoices_count: number;
   total_revenue: number;
   total_margin: number;
 }
-
-const mockData: TCustomer[] = [
-  {
-    customer_name: 'Saidi Castex',
-    region: 'Australia', // @TODO figure out where to get this
-    invoices_count: 19,
-    total_revenue: 277780.72000000003,
-    total_margin: 31677.720000000005,
-  },
-];
 
 const columnHelper = createColumnHelper<TCustomer>();
 
@@ -45,10 +35,10 @@ const columns = [
     header: () => 'Customer Name',
     cell: (info) => info.getValue(),
   }),
-  columnHelper.accessor('region', {
-    header: () => 'Region',
-    cell: (info) => info.getValue(),
-  }),
+  // columnHelper.accessor('region', {
+  //   header: () => 'Region',
+  //   cell: (info) => info.getValue(),
+  // }),
   columnHelper.accessor('invoices_count', {
     header: () => '# of invoices',
     cell: (info) => info.getValue(),
@@ -73,6 +63,16 @@ function TopCustomersTable() {
 
   console.log('data', data);
 
+  const sortedDescendingByFilter = data
+    .slice()
+    .sort(
+      (a, b) =>
+        b[`total_${state.financialFilter}`] -
+        a[`total_${state.financialFilter}`]
+    );
+
+  const bestFifteenCustomers = sortedDescendingByFilter.slice(0, 14);
+
   const bestCustomersTitle = `Top Customers by ${state.financialFilter}`;
 
   const customColumnVisibility = {
@@ -82,7 +82,7 @@ function TopCustomersTable() {
 
   return (
     <Table<TCustomer>
-      data={mockData}
+      data={bestFifteenCustomers}
       columns={columns}
       title={bestCustomersTitle}
       columnVisibility={customColumnVisibility}
