@@ -47,7 +47,7 @@ function Table<TData>({
                         <th
                           key={header.id}
                           scope="col"
-                          className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
+                          className="px-6 py-1 text-left text-xs font-medium uppercase tracking-wider text-gray-500 sm:py-3"
                         >
                           {header.isPlaceholder
                             ? null
@@ -66,7 +66,7 @@ function Table<TData>({
                       {row.getVisibleCells().map((cell) => (
                         <td
                           key={cell.id}
-                          className="whitespace-nowrap px-6 py-4 text-sm font-medium sm:text-base sm:font-normal"
+                          className="whitespace-nowrap px-6 py-1 text-sm font-medium sm:py-4 sm:text-base sm:font-normal"
                         >
                           {flexRender(
                             cell.column.columnDef.cell,
