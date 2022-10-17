@@ -70,7 +70,7 @@ function StatisticCard() {
   return (
     <div className="grid grid-flow-row grid-cols-3 gap-3 xl:grid-cols-6">
       {data.map((kpi) => (
-        <Card value={kpi.value} label={kpi.label as TLabel} />
+        <Card value={kpi.value} label={kpi.label as TLabel} key={kpi.label} />
       ))}
     </div>
   );
