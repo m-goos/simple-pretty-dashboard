@@ -15,7 +15,7 @@ function CategoriesRevenue() {
   if (status === 'loading') return <Loading />;
   if (status === 'error') return <ErrorPage error={error as Error} />;
 
-  const DataTitle = `Total ${state.financialFilter} in € by product`;
+  const DataTitle = `Total ${state.financialFilter} in € by product category`;
 
   const labels = data.map((product) => product.category_name);
 
