@@ -17,11 +17,26 @@ export type TInvoice = {
   total_margin: number;
 };
 
+const formatCurrency = (number: number) =>
+  Intl.NumberFormat('nl-NL', {
+    style: 'currency',
+    currency: 'EUR',
+  }).format(number);
+
+console.log(formatCurrency(5.1234));
+
 const columns = [
   columnHelper.accessor('customer_name', {
     header: () => 'Customer Name',
     cell: (info) => info.getValue(),
-    // footer: (info) => info.column.id,
+  }),
+  columnHelper.accessor('total_invoice', {
+    header: () => 'Revenue',
+    cell: (info) => formatCurrency(info.getValue()),
+  }),
+  columnHelper.accessor('total_margin', {
+    header: () => 'Margin',
+    cell: (info) => formatCurrency(info.getValue()),
   }),
   columnHelper.accessor('id', {
     header: () => 'Invoice ID',
@@ -35,20 +50,8 @@ const columns = [
     header: () => 'Region',
     cell: (info) => info.getValue(),
   }),
-  columnHelper.accessor('total_invoice', {
-    header: () => 'Revenue',
-    cell: (info) => info.getValue(),
-  }),
-  columnHelper.accessor('total_margin', {
-    header: () => 'Margin',
-    cell: (info) => info.getValue(),
-  }),
 ];
 
-/**
- * @returns List of the 15 latest invoices by date, with id, date, costumer name, region, invoice total
-(or total margin, depending on switcher value).
- */
 function InvoiceTable() {
   const { state } = useFilter();
 
@@ -65,11 +68,17 @@ function InvoiceTable() {
 
   const latestFifteenInvoices = sortedByLatestDate.slice(0, 14);
 
+  const customColumnVisibility = {
+    total_margin: state.financialFilter === 'margin',
+    total_invoice: state.financialFilter === 'revenue',
+  };
+
   return (
     <Table<TInvoice>
       data={latestFifteenInvoices}
       columns={columns}
       title={invoiceTitle}
+      columnVisibility={customColumnVisibility}
     />
   );
 }
