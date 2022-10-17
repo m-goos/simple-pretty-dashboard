@@ -20,10 +20,10 @@ function App() {
         <FilterProvider>
           <Filter />
           <div className="space-y-2 px-4 py-2">
-            <TopCustomersTable />
-            <InvoiceTable />
             <InvoicesCumulative />
+            <InvoiceTable />
             <Revenue />
+            <TopCustomersTable />
           </div>
         </FilterProvider>
       </div>
