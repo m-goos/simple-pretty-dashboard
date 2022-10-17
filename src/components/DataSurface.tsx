@@ -6,10 +6,7 @@ interface DataSurfaceProps {
 
 function DataSurface({ children }: DataSurfaceProps) {
   return (
-    <div
-      className="rounded-md
-  border p-2 shadow-sm hover:bg-gray-200"
-    >
+    <div className="rounded-md border p-2 shadow-sm hover:bg-gray-100 xl:mt-auto">
       {children}
     </div>
   );

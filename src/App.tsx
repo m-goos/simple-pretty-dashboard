@@ -15,17 +15,20 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="h-screen bg-gray-100">
+      <div className="bg-gray-50">
         <Navbar />
-        <FilterProvider>
-          <Filter />
-          <div className="space-y-2 px-4 py-2">
-            <InvoicesCumulative />
-            <InvoiceTable />
-            <Revenue />
-            <TopCustomersTable />
-          </div>
-        </FilterProvider>
+        {/* responsive wrapper */}
+        <div className="sm:px-14 sm:py-4 md:px-20 xl:px-6">
+          <FilterProvider>
+            <Filter />
+            <div className="grid grid-cols-1 space-y-4 py-4 px-6 sm:py-0 sm:px-0 sm:pt-2 lg:space-y-6 lg:pt-4 xl:grid-cols-2 xl:gap-8">
+              <InvoicesCumulative />
+              <Revenue />
+              <InvoiceTable />
+              <TopCustomersTable />
+            </div>
+          </FilterProvider>
+        </div>
       </div>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>

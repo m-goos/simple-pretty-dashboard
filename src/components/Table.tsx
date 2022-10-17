@@ -36,8 +36,8 @@ function Table<TData>({
     <DataSurface>
       <DataTitle title={title} icon={icon} />
       <div className="mt-2 flex flex-col">
-        <div className="-my-2 overflow-x-auto  lg:-mx-8">
-          <div className="inline-block min-w-full py-2 align-middle  lg:px-8">
+        <div className="-my-2 overflow-x-auto lg:-mx-8 xl:mx-0">
+          <div className="inline-block min-w-full py-2 align-middle lg:px-8 xl:px-2">
             <div className="overflow-hidden rounded-lg border-b border-gray-200 shadow">
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
