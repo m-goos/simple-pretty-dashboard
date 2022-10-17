@@ -70,3 +70,10 @@ interface ICustomersRevenue {
 }
 
 export type TCustomersRevenues = ICustomersRevenue[];
+
+interface IKPI {
+  label: string;
+  value: number;
+}
+
+export type TKPIs = IKPI[];

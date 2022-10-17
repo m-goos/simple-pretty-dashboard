@@ -7,7 +7,8 @@ export type TEndpoint =
   | '/revenues/monthly'
   | '/revenues/weekly'
   | '/customers/revenues'
-  | '/categories/revenues';
+  | '/categories/revenues'
+  | '/kpis';
 
 export const BASE_URL = process.env.REACT_APP_BASE_URL as string;
 
