@@ -27,7 +27,17 @@ const setBarData = (data: IChartDataSet) => ({
   datasets: [
     {
       data: data.data,
-      backgroundColor: ['#3e95cd', '#8e5ea2', '#3cba9f', '#e8c3b9', '#c45850'],
+      backgroundColor: [
+        '#22d3ee',
+        '#2dd4bf',
+        '#f97316',
+        '#d946ef',
+        '#a855f7',
+        '#818cf8',
+        '#064e3b',
+        '#db2777',
+        '#84cc16',
+      ],
     },
   ],
 });
