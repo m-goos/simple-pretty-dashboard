@@ -66,7 +66,7 @@ function Table<TData>({
                       {row.getVisibleCells().map((cell) => (
                         <td
                           key={cell.id}
-                          className="whitespace-nowrap px-6 py-4"
+                          className="whitespace-nowrap px-6 py-4 text-sm font-medium sm:text-base sm:font-normal"
                         >
                           {flexRender(
                             cell.column.columnDef.cell,
