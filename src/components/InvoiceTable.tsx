@@ -31,12 +31,12 @@ const columns = [
     header: () => 'Margin',
     cell: (info) => formatCurrency(info.getValue()),
   }),
-  columnHelper.accessor('id', {
-    header: () => 'Invoice ID',
-    cell: (info) => info.getValue(),
-  }),
   columnHelper.accessor('date', {
     header: () => 'Date',
+    cell: (info) => info.getValue(),
+  }),
+  columnHelper.accessor('id', {
+    header: () => 'Invoice ID',
     cell: (info) => info.getValue(),
   }),
   columnHelper.accessor('region', {
