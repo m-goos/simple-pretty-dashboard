@@ -7,11 +7,13 @@ import { IChartDataSet } from './charts/chartTypes';
 import useRevenuesTimePeriod from '../api/hooks/useRevenuesTimePeriod';
 import { cumulativeSum } from '../utils/cumulativeSum';
 import { ArrowTrendingUpIcon } from '@heroicons/react/24/outline';
+import usePrefetchRevenuesWeekly from '../api/hooks/usePrefetchRevenuesWeekly';
 
 function InvoicesCumulative() {
   const { state } = useFilter();
 
   const { status, error, data } = useRevenuesTimePeriod(state.timeFilter);
+  usePrefetchRevenuesWeekly();
 
   if (status === 'loading') return <Loading />;
   if (status === 'error') return <ErrorPage error={error as Error} />;
