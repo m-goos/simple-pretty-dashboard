@@ -47,7 +47,7 @@ interface CardProps {
 const Card = ({ value, label }: CardProps) => (
   // number formatting:
   // 1. modulo returns the remainder of the division by 1, thus checking for decimals.
-  <div className="flex flex-col items-center rounded border py-4 shadow-md">
+  <div className="flex flex-col items-center rounded border py-4 shadow-md  hover:bg-gray-100">
     <div className="flex items-center">
       {/* don't render labels for revenue and margin for now */}
       {label !== 'Total margin' && label !== 'Total revenues' ? (
