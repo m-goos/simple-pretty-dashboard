@@ -14,7 +14,7 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="h-screen bg-gray-100 sm:bg-orange-600">
+      <div className="h-screen bg-gray-100">
         <Navbar />
         <FilterProvider>
           <Filter />
