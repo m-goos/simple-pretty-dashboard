@@ -53,7 +53,7 @@ const Card = ({ value, label }: CardProps) => (
       {label !== 'Total margin' && label !== 'Total revenues' ? (
         <span className="h-5 w-5">{KPIMap[label].icon}</span>
       ) : null}
-      <span className="px-2 text-2xl font-semibold text-sky-900">
+      <span className="text-md px-2 font-semibold text-sky-900 sm:text-2xl">
         {value % 1 !== 0 ? formatCurrency(value, true) : value}
       </span>
     </div>
@@ -61,7 +61,7 @@ const Card = ({ value, label }: CardProps) => (
   </div>
 );
 
-function StatisticCard() {
+function KPIs() {
   const { status, error, data } = useKPIs();
 
   if (status === 'loading') return <Loading />;
@@ -76,4 +76,4 @@ function StatisticCard() {
   );
 }
 
-export default StatisticCard;
+export default KPIs;
