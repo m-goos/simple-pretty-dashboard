@@ -2,14 +2,14 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 import './App.css';
-import TopCustomersTable from './components/TopCustomersTable';
+import TopCustomersTable from './components/dataSections/TopCustomersTable';
 import Filter from './components/Filter';
-import InvoicesCumulative from './components/InvoicesCumulative';
-import InvoiceTable from './components/InvoiceTable';
+import InvoicesCumulative from './components/dataSections/InvoicesCumulative';
+import InvoiceTable from './components/dataSections/InvoiceTable';
 import Navbar from './components/Navbar';
-import CategoriesRevenue from './components/CategoriesRevenue';
+import CategoriesRevenue from './components/dataSections/CategoriesRevenue';
 import { FilterProvider } from './context/filterContext';
-import StatisticCard from './components/StatisticCard';
+import StatisticCard from './components/dataSections/StatisticCard';
 
 const queryClient = new QueryClient();
 

@@ -6,10 +6,10 @@ import {
   TagIcon,
   UsersIcon,
 } from '@heroicons/react/24/outline';
-import useKPIs from '../api/hooks/useKPIs';
-import { formatCurrency } from '../utils/formatCurrency';
-import ErrorPage from './ErrorPage';
-import Loading from './Loading';
+import useKPIs from '../../api/hooks/useKPIs';
+import { formatCurrency } from '../../utils/formatCurrency';
+import ErrorPage from '../ErrorPage';
+import Loading from '../Loading';
 
 const KPIMap = {
   'Costumers count': {

@@ -1,13 +1,13 @@
-import { TRevenuesMonthly, TRevenuesWeekly } from '../api/APITypes';
-import { useFilter } from '../context/filterContext';
-import ErrorPage from './ErrorPage';
-import LineChart from './charts/LineChart';
-import Loading from './Loading';
-import { IChartDataSet } from './charts/chartTypes';
-import useRevenuesTimePeriod from '../api/hooks/useRevenuesTimePeriod';
-import { cumulativeSum } from '../utils/cumulativeSum';
+import { TRevenuesMonthly, TRevenuesWeekly } from '../../api/APITypes';
+import { useFilter } from '../../context/filterContext';
+import ErrorPage from '../ErrorPage';
+import LineChart from '../charts/LineChart';
+import Loading from '../Loading';
+import { IChartDataSet } from '../charts/chartTypes';
+import useRevenuesTimePeriod from '../../api/hooks/useRevenuesTimePeriod';
+import { cumulativeSum } from '../../utils/cumulativeSum';
 import { ArrowTrendingUpIcon } from '@heroicons/react/24/outline';
-import usePrefetchRevenuesWeekly from '../api/hooks/usePrefetchRevenuesWeekly';
+import usePrefetchRevenuesWeekly from '../../api/hooks/usePrefetchRevenuesWeekly';
 
 function InvoicesCumulative() {
   const { state } = useFilter();

@@ -1,11 +1,11 @@
 import { createColumnHelper } from '@tanstack/react-table';
 
-import ErrorPage from './ErrorPage';
-import Loading from './Loading';
-import Table from './Table';
-import useInvoices from '../api/hooks/useInvoices';
-import { useFilter } from '../context/filterContext';
-import { formatCurrency } from '../utils/formatCurrency';
+import ErrorPage from '../ErrorPage';
+import Loading from '../Loading';
+import Table from '../Table';
+import useInvoices from '../../api/hooks/useInvoices';
+import { useFilter } from '../../context/filterContext';
+import { formatCurrency } from '../../utils/formatCurrency';
 import { DocumentTextIcon } from '@heroicons/react/24/outline';
 
 const columnHelper = createColumnHelper<TInvoice>();

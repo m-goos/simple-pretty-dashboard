@@ -1,15 +1,15 @@
 import { UserIcon } from '@heroicons/react/24/outline';
 import { createColumnHelper } from '@tanstack/react-table';
-import { IInvoice } from '../api/APITypes';
+import { IInvoice } from '../../api/APITypes';
 
-import useCustomersRevenues from '../api/hooks/useCustomersRevenues';
-import useInvoices from '../api/hooks/useInvoices';
-import { useFilter } from '../context/filterContext';
-import { formatCurrency } from '../utils/formatCurrency';
-import { removeDuplicates } from '../utils/removeDuplicates';
-import ErrorPage from './ErrorPage';
-import Loading from './Loading';
-import Table from './Table';
+import useCustomersRevenues from '../../api/hooks/useCustomersRevenues';
+import useInvoices from '../../api/hooks/useInvoices';
+import { useFilter } from '../../context/filterContext';
+import { formatCurrency } from '../../utils/formatCurrency';
+import { removeDuplicates } from '../../utils/removeDuplicates';
+import ErrorPage from '../ErrorPage';
+import Loading from '../Loading';
+import Table from '../Table';
 
 interface ICustomer {
   customer_name: string;

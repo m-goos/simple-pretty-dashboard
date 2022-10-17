@@ -1,10 +1,10 @@
-import { useFilter } from '../context/filterContext';
-import ErrorPage from './ErrorPage';
+import { useFilter } from '../../context/filterContext';
+import ErrorPage from '../ErrorPage';
 
-import Loading from './Loading';
-import VerticalBarChart from './charts/VerticalBarChart';
-import { IChartDataSet } from './charts/chartTypes';
-import useCategoriesRevenues from '../api/hooks/useCategoriesRevenues';
+import Loading from '../Loading';
+import VerticalBarChart from '../charts/VerticalBarChart';
+import { IChartDataSet } from '../charts/chartTypes';
+import useCategoriesRevenues from '../../api/hooks/useCategoriesRevenues';
 import { TagIcon } from '@heroicons/react/24/outline';
 
 function CategoriesRevenue() {
