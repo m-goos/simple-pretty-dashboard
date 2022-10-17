@@ -44,6 +44,7 @@
     "test": "react-scripts test",
     "test:ci": "react-scripts test --watchAll=false",
     "server": "json-server -p 3001 --fks _id --snapshots ./server/dbs  -d 200 --routes ./server/routes.json --read-only --watch server/generator.js",
+    "server:local-network": "json-server --host 192.168.2.5 -p 3001 --fks _id --snapshots ./server/dbs  -d 200 --routes ./server/routes.json --read-only --watch server/generator.js",
     "prepare": "husky install",
     "prettier": "prettier --write src/",
     "prettier:ci": "prettier --check src/",
