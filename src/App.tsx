@@ -21,7 +21,7 @@ function App() {
         <div className="sm:px-14 sm:py-4 md:px-20 xl:px-6">
           <FilterProvider>
             <Filter />
-            <div className="grid grid-cols-1 space-y-4 py-4 px-6 sm:py-0 sm:px-0 sm:pt-2 lg:space-y-6 lg:pt-4 xl:grid-cols-2 xl:gap-x-6">
+            <div className="grid grid-cols-1 space-y-4 py-4 px-6 sm:py-0 sm:px-0 sm:pt-2 lg:space-y-6 lg:pt-4 xl:grid-cols-2 xl:gap-x-6 xl:pt-0">
               <InvoicesCumulative />
               <Revenue />
               <InvoiceTable />
