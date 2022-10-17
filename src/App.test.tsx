@@ -1,9 +1,13 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('Has a revenue toggle', () => {
   render(<App />);
-  const linkElement = screen.getByText(/revenue/i);
-  expect(linkElement).toBeInTheDocument();
+  const revenueToggle = screen.getByRole('radio', { name: /revenue/i });
+  expect(revenueToggle).toBeInTheDocument();
+});
+test('Has a margin toggle', () => {
+  render(<App />);
+  const marginToggle = screen.getByRole('radio', { name: /margin/i });
+  expect(marginToggle).toBeInTheDocument();
 });
