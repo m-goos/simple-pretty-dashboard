@@ -1,33 +1,21 @@
 import { createColumnHelper } from '@tanstack/react-table';
+import { IInvoice } from '../api/APITypes';
+
 import useCustomersRevenues from '../api/hooks/useCustomersRevenues';
+import useInvoices from '../api/hooks/useInvoices';
 import { useFilter } from '../context/filterContext';
 import { formatCurrency } from '../utils/formatCurrency';
+import { removeDuplicates } from '../utils/removeDuplicates';
 import ErrorPage from './ErrorPage';
 import Loading from './Loading';
 import Table from './Table';
-
-/**
- *  @TODO
- * 2. x get data from API, format where necessary, pass to component
- * 3. x sort and pick top 15
- * 4. x implement toggle margin/revenue
- * 5. re-use data from /invoices endpoint
- * 6. get array of regions per customer
- *
- * **SPECS**
- * List of our best customers, with their
- * * name,
- * * their region,
- * * the number of invoices at their names and the
- * * total revenue (or total margin, depending on switcher value).
- * */
 
 interface ICustomer {
   customer_name: string;
   invoices_count: number;
   total_revenue: number;
   total_margin: number;
-  // region: string[]; @TODO get region from other endpoint
+  regions: string;
 }
 
 const columnHelper = createColumnHelper<ICustomer>();
@@ -49,22 +37,25 @@ const columns = [
     header: () => 'Revenue',
     cell: (info) => formatCurrency(info.getValue()),
   }),
-  // columnHelper.accessor('regions', {
-  //   header: () => 'Region',
-  //   cell: (info) => info.getValue(),
-  // }),
+  columnHelper.accessor('regions', {
+    header: () => 'Region',
+    cell: (info) => info.getValue(),
+  }),
 ];
 
 function TopCustomersTable() {
   const { state } = useFilter();
 
   const { status, error, data } = useCustomersRevenues();
+  const { status: invoicesStatus, data: invoicesData } = useInvoices();
 
-  if (status === 'loading') return <Loading />;
-  if (status === 'error') return <ErrorPage error={error as Error} />;
+  if (status === 'loading' || invoicesStatus === 'loading') return <Loading />;
+  if (status === 'error' || invoicesStatus === 'error')
+    return <ErrorPage error={error as Error} />;
 
-  console.log('data', data);
+  const topCustomersTitle = `Top Customers by ${state.financialFilter}`;
 
+  // sort and get top {number} customers (in this case: 15)
   const sortedDescendingByFilter = data
     .slice()
     .sort(
@@ -72,10 +63,23 @@ function TopCustomersTable() {
         b[`total_${state.financialFilter}`] -
         a[`total_${state.financialFilter}`]
     );
+  const topCustomers = sortedDescendingByFilter.slice(0, 14);
 
-  const bestFifteenCustomers = sortedDescendingByFilter.slice(0, 14);
+  // extract regions per customer from invoices endpoint
+  const topCustomersInvoices: IInvoice[][] = topCustomers.map((customer) =>
+    invoicesData.filter(
+      (invoice) => invoice.customer_id === customer.customer_id
+    )
+  );
+  const regionsPerCustomer = topCustomersInvoices.map((invoiceArray) =>
+    removeDuplicates(invoiceArray.map((invoice) => invoice.region))
+  );
 
-  const bestCustomersTitle = `Top Customers by ${state.financialFilter}`;
+  // add regions to topCustomers
+  const topCustomersWithRegions = topCustomers.map((customer, i) => ({
+    ...customer,
+    regions: regionsPerCustomer[i].join(', '),
+  }));
 
   const customColumnVisibility = {
     total_margin: state.financialFilter === 'margin',
@@ -84,9 +88,9 @@ function TopCustomersTable() {
 
   return (
     <Table<ICustomer>
-      data={bestFifteenCustomers}
+      data={topCustomersWithRegions}
       columns={columns}
-      title={bestCustomersTitle}
+      title={topCustomersTitle}
       columnVisibility={customColumnVisibility}
     />
   );
