@@ -2,7 +2,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 import './App.css';
-import BestCustomers from './components/BestCustomers';
+import TopCustomersTable from './components/TopCustomersTable';
 import Filter from './components/Filter';
 import InvoicesCumulative from './components/InvoicesCumulative';
 import InvoiceTable from './components/InvoiceTable';
@@ -20,7 +20,7 @@ function App() {
         <FilterProvider>
           <Filter />
           <div className="space-y-2 px-4 py-2">
-            <BestCustomers />
+            <TopCustomersTable />
             <InvoiceTable />
             <InvoicesCumulative />
             <Revenue />

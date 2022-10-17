@@ -63,7 +63,7 @@ const columns = [
   }),
 ];
 
-function BestCustomers() {
+function TopCustomersTable() {
   const { state } = useFilter();
 
   const { status, error, data } = useCustomersRevenues();
@@ -73,7 +73,7 @@ function BestCustomers() {
 
   console.log('data', data);
 
-  const bestCustomersTitle = `Top Customers (${state.financialFilter})`;
+  const bestCustomersTitle = `Top Customers by ${state.financialFilter}`;
 
   const customColumnVisibility = {
     total_margin: state.financialFilter === 'margin',
@@ -90,4 +90,4 @@ function BestCustomers() {
   );
 }
 
-export default BestCustomers;
+export default TopCustomersTable;
