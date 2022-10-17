@@ -32,7 +32,8 @@ function RadioGroupButtons({ options, onChange }: RadioGroupButtonsProps) {
                   }
                   ${
                     checked
-                      ? 'bg-sky-900 bg-opacity-75 text-white'
+                      ? // ? 'bg-sky-900 bg-opacity-75 text-white'
+                        'bg-gradient-to-tr from-cyan-300 to-blue-500 text-white'
                       : 'bg-gray-100'
                   }
                     relative flex cursor-pointer rounded-md px-2 py-1 shadow-md focus:outline-none`
@@ -43,7 +44,7 @@ function RadioGroupButtons({ options, onChange }: RadioGroupButtonsProps) {
                     <RadioGroup.Label
                       as="p"
                       className={`font-medium ${
-                        checked ? 'text-white' : 'text-gray-900'
+                        checked ? 'text-white' : 'text-gray-600'
                       }`}
                     >
                       {option}

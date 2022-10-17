@@ -29,7 +29,7 @@ const setData = (data: IChartDataSet) => ({
   datasets: [
     {
       data: data.data,
-      borderColor: '#1d4ed8',
+      borderColor: '#3b82f6',
       backgroundColor: '#60a5fa',
     },
   ],
