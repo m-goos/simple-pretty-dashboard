@@ -25,10 +25,12 @@ function Filter() {
           <RadioGroupButtons
             options={financialFilterOptions}
             onChange={() => dispatch({ type: 'changeFinancialFilter' })}
+            radioGroupLabel={'Financial filters'}
           />
           <RadioGroupButtons
             options={timeFilterOptions}
             onChange={() => dispatch({ type: 'changeTimeFilter' })}
+            radioGroupLabel={'Time period filters'}
           />
         </div>
       </div>

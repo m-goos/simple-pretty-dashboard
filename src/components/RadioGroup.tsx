@@ -4,9 +4,14 @@ import { RadioGroup } from '@headlessui/react';
 interface RadioGroupButtonsProps {
   options: string[];
   onChange: () => void;
+  radioGroupLabel: string;
 }
 
-function RadioGroupButtons({ options, onChange }: RadioGroupButtonsProps) {
+function RadioGroupButtons({
+  options,
+  onChange,
+  radioGroupLabel,
+}: RadioGroupButtonsProps) {
   const [selected, setSelected] = useState(options[0]);
 
   const handleChange = (value: string) => {
@@ -18,7 +23,9 @@ function RadioGroupButtons({ options, onChange }: RadioGroupButtonsProps) {
     <div className="w-fit rounded-lg border border-solid border-sky-900 border-opacity-25 p-1">
       <div className="mx-auto w-full max-w-md">
         <RadioGroup value={selected} onChange={handleChange}>
-          <RadioGroup.Label className="sr-only">Server size</RadioGroup.Label>
+          <RadioGroup.Label className="sr-only">
+            {radioGroupLabel}
+          </RadioGroup.Label>
           <div className="flex flex-row space-x-2">
             {options.map((option) => (
               <RadioGroup.Option
