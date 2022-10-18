@@ -4,7 +4,7 @@
 
 > Hi! Thanks for taking the time to have a look at this assignment.
 
-![demo](readme-assets/dashboard.gif)
+![demo](readme-assets/dashboard-demo.gif)
 
 
 ## Setup
