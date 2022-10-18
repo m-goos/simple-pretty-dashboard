@@ -4,6 +4,9 @@
 
 > Hi! Thanks for taking the time to have a look at this assignment.
 
+![demo](readme-assets/dashboard.gif)
+
+
 ## Setup
 On your local machine
 ```sh
@@ -29,10 +32,10 @@ This is the workflow I went through for this project:
 1. Set up the project and check out the `/routes` by creating a small Postman collection
 2. Go over the requirements
 3. Make a sketch of the dashboard in Excalidraw, using four viewports (there's a library for just pulling in those viewports), keeping in mind responsiveness.
-4. Responsiveness - I'll go with 4 viewports: (<sm | md | lg | xl+)
-   1. iPhone 8
-   2. iPad Mini
-   3. iPad pro
+4. Responsiveness - I'll go with 4 viewports: (<sm | sm | md | xl)
+   1. iPhone 8 
+   2. iPad - portrait
+   3. iPad - landscape
    4. MBP 16"
 5. Make choices to save time:
    1. Pick a library for bar charts and line charts, simply the most popular one, chart.js, and to save some time the [react-version](https://react-chartjs-2.js.org/). No custom [D3JS](https://d3js.org/) in this timeframe..
