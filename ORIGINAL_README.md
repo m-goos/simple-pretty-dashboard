@@ -1,4 +1,4 @@
-# Frontend home assignment
+# Building a dashboard - setup
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
