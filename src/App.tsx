@@ -11,7 +11,7 @@ import CategoriesRevenue from './components/dataSections/CategoriesRevenue';
 import { FilterProvider } from './context/filterContext';
 import KPIs from './components/dataSections/KPIs';
 
-// TOGGLE THIS TO MOCK ALL REQUESTS
+// TOGGLE THIS TO MOCK ALL REQUESTS - Or to build an example of the project for deployment
 // if (process.env.NODE_ENV === 'development') {
 //   const { worker } = require('./mocks/browser');
 //   worker.start();

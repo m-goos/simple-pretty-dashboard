@@ -1,14 +1,15 @@
 # Dashboard
 
-*find the original readme [here](./ORIGINAL_README.md)*
+_find the original readme [here](./ORIGINAL_README.md)_
 
-🚀 [Click here](https://d4risgryuo87c.cloudfront.net/) to see the deployed version (MSW enabled).
+> 🚀 [Click here](https://d4risgryuo87c.cloudfront.net/) to see the deployed version (MSW enabled) to try the result.
 
 ![demo](readme-assets/dashboard-demo.gif)
 
-
 ## Setup
+
 On your local machine
+
 ```sh
 yarn # installs files
 
@@ -18,13 +19,16 @@ yarn server
 # in terminal tab 2
 yarn start
 ```
+
 You'll find the project at `http://localhost:3000`
 
 Alternatively, if you want to check out the project on your mobile phone / ipad locally:
+
 ```sh
 yarn server:local-network
 yarn start:local-network # terminal output will print your IP
 ```
+
 ## Process
 
 This is the workflow I went through for this project:
@@ -33,7 +37,7 @@ This is the workflow I went through for this project:
 2. Go over the requirements
 3. Make a sketch of the dashboard in Excalidraw, using four viewports (there's a library for just pulling in those viewports), keeping in mind responsiveness.
 4. Responsiveness - I'll go with 4 viewports: (<sm | sm | md | xl)
-   1. iPhone 8 
+   1. iPhone 8
    2. iPad - portrait
    3. iPad - landscape
    4. MBP 16"
@@ -60,15 +64,17 @@ This is the workflow I went through for this project:
    3. Make it responsive
 
 ## Improvements
+
 There are plenty of things that can be improved, that I believe would add a lot. In no particular order:
 
 ### Value of the dashboard information
+
 1. A donut chart that shows turnover per region - something like [[this](https://react-chartjs-2.js.org/examples/doughnut-chart/)]
 2. Maybe even plotting this information on a region map like this [nivo](https://nivo.rocks/choropleth/) example.
 3. More insights into which products generate the most revenue, the biggest total margin, ..
 
-
 ### User experience
+
 1. Add 'skeleton' components that show while the page is in loading state, or take the place of a component with a (network) error
 2. The `filters` currently go out of view when you scroll down on a mobile phone. It would be great if they could somehow float on the screen and could be expanded when desired. Something like this [popover](https://headlessui.com/react/popover) example could be nice.
 3. I love `dark themes` - a first step would be to extract the used tailwind colors into a list of CSS variables and apply them across the project. Next, themes can be added and (easily) toggled.
@@ -76,10 +82,11 @@ There are plenty of things that can be improved, that I believe would add a lot.
 5. If the dashboard gets built out: code splitting, `React.lazy(() => ...)`.
 
 ### Code quality
-1. `git strategy`: using branches! - now I just worked on main, but I would suggest using a branch per feature for project that are supposed to have a future life. E.g.: 
-   1. feat/bar-chart, 
-   2. feat/api-client, 
-   3. refactor/organize-all-charts, 
+
+1. `git strategy`: using branches! - now I just worked on main, but I would suggest using a branch per feature for project that are supposed to have a future life. E.g.:
+   1. feat/bar-chart,
+   2. feat/api-client,
+   3. refactor/organize-all-charts,
    4. fix/network-error-for-customer-endpoint
    5. style/implement-responsiveness
 2. Code reviews. Other people looking critically at my code..
@@ -87,3 +94,14 @@ There are plenty of things that can be improved, that I believe would add a lot.
    1. I already took some steps to set up `mock service worker` with `react-query`, but have not gotten far enough with the app. Good [documentation](https://tkdodo.eu/blog/testing-react-query) and [example repo](https://github.com/TkDodo/testing-react-query/blob/main/package.json) for `react-query` testing
 4. Another nice visual regression test is 'screenshot comparison' (e.g. [playwright](https://playwright.dev/docs/test-snapshots))
 5. There is one 'any' type in the whole project, for the react-table columns. I decided not to dig into react-table too deep for this assignment, but that should definitely be strongly typed.
+
+## Deployment
+
+To deploy the project in its simplest form, I took the following steps:
+
+- Build the project (`yarn build`) with Mock Service Worker enabled to mock all network requests
+- In AWS:
+  - Webhosting: Create an S3 bucket, set it to `static web hosting`
+  - Upload all files to the S3 bucket and set the bucket privacy to `public`
+  - CDN: Create a Cloudfront distribution
+  - Deploy the distribution and link it to the S3 bucket
