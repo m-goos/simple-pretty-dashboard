@@ -2,7 +2,7 @@
 
 *find the original readme [here](./ORIGINAL_README.md)*
 
-> Hi! Thanks for taking the time to have a look at this assignment.
+🚀 [Click here](https://d4risgryuo87c.cloudfront.net/) to see the deployed version (MSW enabled).
 
 ![demo](readme-assets/dashboard-demo.gif)
 
